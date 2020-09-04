@@ -1,12 +1,10 @@
 package fit5042.assx.entities;
 
-import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 
@@ -17,7 +15,7 @@ public class Customer
 	private int customerId;
 	private Staff staffId;
 	private Industry industryId;
-	private List<CustomerContactInformation> contactInformation;
+	private CustomerContactInformation contactInformation;
 	private String customerFirstName;
 	private String customerLastName;
 	private Printer printer_id;
@@ -29,7 +27,7 @@ public class Customer
 	}
 	
 	public Customer(int customerId, Staff staffId, Industry industryId,
-			List<CustomerContactInformation> contactInformation, String customerFirstName, String customerLastName,
+			CustomerContactInformation contactInformation, String customerFirstName, String customerLastName,
 			Printer printer_id, String dateOfPurchase) 
 	{
 		super();
@@ -75,13 +73,13 @@ public class Customer
 		this.industryId = industryId;
 	}
 	
-	@OneToMany
-	public List<CustomerContactInformation> getContactInformation() 
+	@OneToOne
+	public CustomerContactInformation getContactInformation() 
 	{
 		return contactInformation;
 	}
 
-	public void setContactInformation(List<CustomerContactInformation> contactInformation) 
+	public void setContactInformation(CustomerContactInformation contactInformation) 
 	{
 		this.contactInformation = contactInformation;
 	}
@@ -106,6 +104,7 @@ public class Customer
 		this.customerLastName = customerLastName;
 	}
 	
+	@OneToOne
 	public Printer getPrinter_id() 
 	{
 		return printer_id;

@@ -2,6 +2,7 @@ package fit5042.assx.entities;
 
 import java.util.List;
 
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -78,7 +79,8 @@ public class Staff
 	{
 		this.staffTFN = staffTFN;
 	}
-
+	
+	@Embedded
 	public Address getStaffAddress() 
 	{
 		return staffAddress;
