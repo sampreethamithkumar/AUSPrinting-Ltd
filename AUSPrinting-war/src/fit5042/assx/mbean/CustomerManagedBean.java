@@ -54,10 +54,10 @@ public class CustomerManagedBean implements Serializable
 //	}
 
 	public String addCustomer(CustomerController customerController) {
+		addContactInformation(customerController);
 		Customer customer = convertCustomerToEntity(customerController);
 		
 		try {
-			addContactInformation(customerController);
 			customerRepository.addCustomer(customer);
 		}
 		catch (Exception e) {
@@ -100,19 +100,19 @@ public class CustomerManagedBean implements Serializable
 	public Customer convertCustomerToEntity(CustomerController customerController)
 	{
 		Customer customer = new Customer();
-		String streetNumber = customerController.getStreetNumber();
-        String streetAddress = customerController.getStreetAddress();
-        String suburb = customerController.getSuburb();
-        String postcode = customerController.getPostcode();
-        String state = customerController.getState();
-        Address address = new Address(streetNumber, streetAddress, suburb, postcode, state);
-        long phoneNumber = customerController.getCustomerPhoneNumber();
-        String email = customerController.getCustomerEmail();
-        String dob = customerController.getCustomerDob();
-        String tfn = customerController.getCustomerTFN();
-        int contactId = customerController.getCustomerContactId();
-        CustomerContactInformation contactInformation = new CustomerContactInformation(contactId, address, phoneNumber, email, dob, tfn);
-		customer.setContactInformation(contactInformation);
+//		String streetNumber = customerController.getStreetNumber();
+//        String streetAddress = customerController.getStreetAddress();
+//        String suburb = customerController.getSuburb();
+//        String postcode = customerController.getPostcode();
+//        String state = customerController.getState();
+//        Address address = new Address(streetNumber, streetAddress, suburb, postcode, state);
+//        long phoneNumber = customerController.getCustomerPhoneNumber();
+//        String email = customerController.getCustomerEmail();
+//        String dob = customerController.getCustomerDob();
+//        String tfn = customerController.getCustomerTFN();
+//        int contactId = customerController.getCustomerContactId();
+//        CustomerContactInformation contactInformation = new CustomerContactInformation(contactId, address, phoneNumber, email, dob, tfn);
+		customer.setContactInformation(convertContactInformationToEntity(customerController));
         int staffId = customerController.getStaffId();
 		String staffFname = customerController.getStaffFname();
 		String staffLname = customerController.getStaffLname();

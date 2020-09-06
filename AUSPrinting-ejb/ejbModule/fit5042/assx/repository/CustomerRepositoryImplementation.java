@@ -24,10 +24,12 @@ public class CustomerRepositoryImplementation implements  CustomerRepository
 	public void addCustomer(Customer customer) throws Exception {
 		List<Customer> customers = getCustomers();
 		int lastCustomerId = customers.get(customers.size() - 1).getCustomerId();
+		List<CustomerContactInformation> customerContactInforamtion = entityManager.createNamedQuery(CustomerContactInformation.GET_ALL_CONTACT_INFORMATION).getResultList();
+		int lastContactId = customerContactInforamtion.get(customerContactInforamtion.size() - 1).getCustomerContactId();
 		//int lastCustomerContactId = customers.get(customers.size() - 1).getContactInformation().getCustomerContactId();
 		customer.setCustomerId(lastCustomerId + 1);
 		CustomerContactInformation newCustomerconatctInformation = customer.getContactInformation();
-		newCustomerconatctInformation.setCustomerContactId(lastCustomerId + 1);
+		newCustomerconatctInformation.setCustomerContactId(lastContactId);
 		customer.setContactInformation(newCustomerconatctInformation);
 		entityManager.persist(customer);
 	}
@@ -57,8 +59,12 @@ public class CustomerRepositoryImplementation implements  CustomerRepository
 	}
 
 	@Override
-	public void addContactInformation(CustomerContactInformation contactInforamtion) {
-		
+	public void addContactInformation(CustomerContactInformation contactInforamtion) 
+	{
+		List<CustomerContactInformation> customerContactInforamtion = entityManager.createNamedQuery(CustomerContactInformation.GET_ALL_CONTACT_INFORMATION).getResultList();
+		int lastContactId = customerContactInforamtion.get(customerContactInforamtion.size() - 1).getCustomerContactId();
+		contactInforamtion.setCustomerContactId(lastContactId + 1);
+		entityManager.persist(contactInforamtion);
 	}
 
 }

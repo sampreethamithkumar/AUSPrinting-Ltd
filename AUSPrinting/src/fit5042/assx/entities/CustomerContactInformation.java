@@ -6,10 +6,16 @@ import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 @Entity
+@NamedQueries({
+	@NamedQuery(name = CustomerContactInformation.GET_ALL_CONTACT_INFORMATION, query= "SELECT c FROM CustomerContactInformation c order by c.customerContactId")
+})
 public class CustomerContactInformation implements Serializable
 {
+	public static final String GET_ALL_CONTACT_INFORMATION = "CustomerContactInformation.getAll"; 
 	@Id @GeneratedValue
 	private int customerContactId;
 	private Address customerAddress;

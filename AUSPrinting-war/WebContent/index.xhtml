@@ -137,7 +137,7 @@
                       <th>Last Name</th>
                   </tr>
                   
-                  <ui:repeat var="tempcustomer" value="#{customerManagedBean.customers}">
+                  <ui:repeat var="tempcustomer" value="#{customerManagedBean.customers}" id="customerTable">
                   <tr>
                   	<td>#{tempcustomer.customerId}</td>
                   	<td>#{tempcustomer.customerFirstName}</td>
