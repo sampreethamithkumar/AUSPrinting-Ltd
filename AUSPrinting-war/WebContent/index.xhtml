@@ -54,7 +54,7 @@
           <div class="col-md-2">
             <div class="dropdown create">
               <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="modal" data-target="#addPage" aria-haspopup="true" aria-expanded="true">
-                Add User
+                Add Customer
               </button>
             </div>
           </div>
@@ -132,20 +132,18 @@
               <div class="panel-body">
                 <table class="table table-striped table-hover">
                   <tr>
+                      <th>Customer Id</th>
                       <th>First Name</th>
                       <th>Last Name</th>
-                      <th>Email Id</th>
                   </tr>
+                  
+                  <ui:repeat var="tempcustomer" value="#{customerManagedBean.customers}">
                   <tr>
-                      <td>Sampreeth</td>
-                      <td>Amith</td>
-                      <td>sampreethamithkumar@gmail.com</td>
+                  	<td>#{tempcustomer.customerId}</td>
+                  	<td>#{tempcustomer.customerFirstName}</td>
+                  	<td>#{tempcustomer.customerLastName}</td>
                   </tr>
-                  <tr>
-                      <td>Prathiksha</td>
-                      <td>C P</td>
-                      <td>prathikshajain54@gmail.com</td>
-                  </tr>
+                  </ui:repeat>
               </table>
               </div>
             </div>
@@ -169,24 +167,74 @@
           <h:form>
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+            <h4 class="modal-title" id="myModalLabel">Add Customer</h4>
           </div>
           <div class="modal-body">
             <div class="form-group">
-              <label>Name</label>
-              <h:inputText value="name" class="form-control" placeholder="Add name"/>
-          </div>
-          <div class="form-group">
-              <label>Email</label>
-              <h:inputText value="email" class="form-control" placeholder="Add email"/>
-              
-          </div>
-     
-          
+              <label>First Name</label>
+              <h:inputText value="#{customer.customerFirstName}" class="form-control" placeholder="First Name" id="firstName"/>
+          	</div>
+          	<div class="form-group">
+              <label>Last Name</label>
+              <h:inputText value="#{customer.customerLastName}" class="form-control" placeholder="Last Name" id="lastName"/>
+          	</div>
+          	<div class="form-group">
+              <label>Street Number</label>
+              <h:inputText value="#{customer.streetNumber}" class="form-control" placeholder="Street Number" id="streetNumber"/>
+          	</div>
+          	<div class="form-group">
+              <label>Street Address</label>
+              <h:inputText value="#{customer.streetAddress}" class="form-control" placeholder="Street Address" id="streetAddress"/>
+          	</div>
+          	<div class="form-group">
+              <label>Suburb</label>
+              <h:inputText value="#{customer.suburb}" class="form-control" placeholder="Suburb" id="suburb"/>
+          	</div>
+          	<div class="form-group">
+              <label>Postcode</label>
+              <h:inputText value="#{customer.postcode}" class="form-control" placeholder="Postcode" id="postcode"/>
+          	</div>
+          	<div class="form-group">
+              <label>State</label>
+              <h:inputText value="#{customer.state}" class="form-control" placeholder="State" id="state"/>
+          	</div>
+          	<div class="form-group">
+              <label>Phone Number</label>
+              <h:inputText value="#{customer.customerPhoneNumber}" class="form-control" placeholder="Phone Number" id="phoneNumber"/>
+          	</div>
+     		<div class="form-group">
+              <label>Email Id</label>
+              <h:inputText value="#{customer.customerEmail}" class="form-control" placeholder="Email" id="email"/>
+          	</div>
+          	<div class="form-group">
+              <label>Date Of Birth</label>
+              <h:inputText value="#{customer.customerDob}" class="form-control" placeholder="Date Of Birth" id="dob"/>
+          	</div>
+          	<div class="form-group">
+              <label>TFN</label>
+              <h:inputText value="#{customer.customerTFN}" class="form-control" placeholder="TFN" id="tfn"/>
+          	</div>
+			<div class="form-group">
+              <label>Staff Assigning Id</label>
+              <h:inputText value="#{customer.staffId}" class="form-control" placeholder="Staff Id" id="staffId"/>
+          	</div>
+          	<div class="form-group">
+              <label>Industry Id</label>
+              <h:inputText value="#{customer.industryId}" class="form-control" placeholder="Industry Id" id="industryId"/>
+          	</div>
+          	<div class="form-group">
+              <label>Printer Id</label>
+              <h:inputText value="#{customer.printerId}" class="form-control" placeholder="Printer Id" id="printerId"/>
+          	</div>
+          	<div class="form-group">
+              <label>Date Of Purchase</label>
+              <h:inputText value="#{customer.dateOfPurchase}" class="form-control" placeholder="Date Of Purchase" id="dop"/>
+          	</div>
+			          
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+            <h:commandButton class="btn btn-primary" action="#{customerManagedBean.addCustomer(customer)}" value="Add"  />
           </div>
         </h:form>
         </div>

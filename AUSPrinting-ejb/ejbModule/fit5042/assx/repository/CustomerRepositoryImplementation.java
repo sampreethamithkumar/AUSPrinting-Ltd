@@ -11,6 +11,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
 import fit5042.assx.entities.Customer;
+import fit5042.assx.entities.CustomerContactInformation;
 
 
 @Stateless
@@ -20,9 +21,15 @@ public class CustomerRepositoryImplementation implements  CustomerRepository
 	private EntityManager entityManager;
 
 	@Override
-	public void addCustomer(Customer customer) {
-		
-		
+	public void addCustomer(Customer customer) throws Exception {
+		List<Customer> customers = getCustomers();
+		int lastCustomerId = customers.get(customers.size() - 1).getCustomerId();
+		//int lastCustomerContactId = customers.get(customers.size() - 1).getContactInformation().getCustomerContactId();
+		customer.setCustomerId(lastCustomerId + 1);
+		CustomerContactInformation newCustomerconatctInformation = customer.getContactInformation();
+		newCustomerconatctInformation.setCustomerContactId(lastCustomerId + 1);
+		customer.setContactInformation(newCustomerconatctInformation);
+		entityManager.persist(customer);
 	}
 
 	@Override
@@ -34,7 +41,6 @@ public class CustomerRepositoryImplementation implements  CustomerRepository
 	@Override
 	public List<Customer> getCustomers() 
 	{
-		
 		CriteriaBuilder criteriaBuilder= entityManager.getCriteriaBuilder();
 		CriteriaQuery<Customer> criteraiQuery = criteriaBuilder.createQuery(Customer.class);
 		Root<Customer> rootEntry = criteraiQuery.from(Customer.class);
@@ -47,6 +53,11 @@ public class CustomerRepositoryImplementation implements  CustomerRepository
 	@Override
 	public void searchCustomerById(int customerId) {
 		
+		
+	}
+
+	@Override
+	public void addContactInformation(CustomerContactInformation contactInforamtion) {
 		
 	}
 

@@ -7,10 +7,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 
 
 @Entity
+//@NamedQueries({
+//	@NamedQuery(name = Customer.GET_ALL_CUSTOMERS)
+//})
 public class Customer implements Serializable
 {
 	@Id @GeneratedValue
