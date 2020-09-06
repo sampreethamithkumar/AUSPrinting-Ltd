@@ -1,12 +1,14 @@
 package fit5042.assx.entities;
 
+import java.io.Serializable;
+
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class CustomerContactInformation 
+public class CustomerContactInformation implements Serializable
 {
 	@Id @GeneratedValue
 	private int customerContactId;

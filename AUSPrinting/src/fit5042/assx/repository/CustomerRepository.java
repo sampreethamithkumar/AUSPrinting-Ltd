@@ -1,5 +1,7 @@
 package fit5042.assx.repository;
 
+import java.util.List;
+
 import javax.ejb.Remote;
 import javax.inject.Named;
 
@@ -12,7 +14,7 @@ public interface CustomerRepository
 	
 	public void removeCustomer(Customer customer);
 	
-	public void getCustomers(Customer customer);
+	public List<Customer> getCustomers();
 	
 	public void searchCustomerById(int customerId);
 	

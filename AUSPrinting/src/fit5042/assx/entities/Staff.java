@@ -1,5 +1,6 @@
 package fit5042.assx.entities;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Embedded;
@@ -9,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Staff 
+public class Staff implements Serializable
 {
 	
 	@Id @GeneratedValue
