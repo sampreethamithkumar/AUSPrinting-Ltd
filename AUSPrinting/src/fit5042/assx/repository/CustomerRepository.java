@@ -17,7 +17,7 @@ public interface CustomerRepository
 	
 	public List<Customer> getCustomers();
 	
-	public void searchCustomerById(int customerId);
+	public Customer searchCustomerById(int customerId);
 	
 	public void addContactInformation(CustomerContactInformation contactInforamtion);
 	

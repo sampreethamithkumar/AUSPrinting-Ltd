@@ -31,7 +31,7 @@
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li role="presentation"><h:link value = "Dashboard" outcome = "index" /></li>
-            <li role="presentation" class="active" ><h:link value="Customer" outcome="index"/></li>
+            <li role="presentation" class="active" ><h:link value="Customer" outcome="customer"/></li>
             <li role="presentation"><h:link value="Staff" outcome="index"/></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
@@ -64,8 +64,8 @@
     <section id="breadcrumb">
       <div class = "container">
         <ol class="breadcrumb">
-			<li><h:link value="Dashboard" outcome="index"/> / </li>        
-          	<li><h:link value ="Customer" outcome ="customer"/> / </li>
+			<li><h:link value="Dashboard" outcome="index"/> > </li>        
+          	<li><h:link value ="Customer" outcome ="customer"/> > </li>
           	<li class="active"><h:link value="Search" outcome="customerSearch" /></li>
         </ol>
       </div>
@@ -101,34 +101,71 @@
 
           <div class="col-md-9">
             <div class="panel panel-default">
-              <div class="panel-heading maincolor">
-                <h3 class="panel-title">All Customer Details</h3>
+              	<div class="panel-heading maincolor">
+                	<h3 class="panel-title">Search Customers</h3>
+              	</div>
+              	<div class="panel-body">
+              		<h:form>
+              			<div class="form-group col-md-3" style="width:30%">
+              				<h:outputLabel value="Search By ID" style="margin-left:25%" />
+              				<h:inputText value="#{searchCustomer.searchById}" id="searchbyId" class="form-control" />
+              				<br/> 
+              				<h:commandButton style="margin-left:25%" value="Search By Id" id="searchId" action="#{customerApplication.searchCustomerById(searchCustomer.searchById)}" class="btn btn-primary">
+              					<f:ajax execute="searchbyId" render="searchTable" />
+              				</h:commandButton>
+              			</div>
+              			<div class="form-group col-md-3" style="width:30%">
+              				<h:outputLabel value="Search First Name" style="margin-left:25%" />
+              				<h:inputText value="#{searchCustomer.searchById}" id="searchbyName" class="form-control" />
+              				<br/> 
+              				<h:commandButton style="margin-left:25%" value="Search By Id" id="searchName" action="#{customerApplication.searchCustomerById(searchCustomer.searchById)}" class="btn btn-primary">
+              					<f:ajax execute="searchName" render="searchTable" />
+              				</h:commandButton>
+              			</div>
+              			<div class="form-group col-md-3" style="width:30%">
+              				<h:outputLabel value="Search By ID" style="margin-left:25%" />
+              				<h:inputText value="#{searchCustomer.searchById}" id="searchbyPhoneNumber" class="form-control" />
+              				<br/> 
+              				<h:commandButton style="margin-left:25%" value="Search By Id" id="searchPhoneNumber" action="#{customerApplication.searchCustomerById(searchCustomer.searchById)}" class="btn btn-primary">
+              					<f:ajax execute="searchbyPhoneNumber" render="searchTable" />
+              				</h:commandButton>
+              			</div>
+              		</h:form>
+              	</div>
               </div>
+              
+              
+              <div class="panel panel-default">
+              	<div class="panel-heading maincolor">
+                	<h3 class="panel-title">Customer List</h3>
+              	</div>
               <div class="panel-body">
-                <table class="table table-striped table-hover">
-                  <tr>
-                      <th>Customer Id</th>
-                      <th>First Name</th>
-                      <th>Last Name</th>
-                  </tr>
-                  
-                  <ui:repeat var="tempcustomer" value="#{customerManagedBean.customers}" id="customerTable">
-                  <tr>
-                  	<td>#{tempcustomer.customerId}</td>
-                  	<td>#{tempcustomer.customerFirstName}</td>
-                  	<td>#{tempcustomer.customerLastName}</td>
-                  </tr>
-                  </ui:repeat>
-              </table>
+              
+              	<h:dataTable value="#{customerApplication.customers}" var="tempCustomer" id="searchTable" class="table table-striped table-hover">
+          
+              		<h:column>
+              			<f:facet name="header">Customer Id</f:facet>
+              			
+              			#{tempCustomer.customerId}
+              		</h:column>
+              		
+              		<h:column>
+              			<f:facet name="header">First Name</f:facet>
+              			
+              			#{tempCustomer.customerFirstName}
+              		</h:column>
+              		
+              		<h:column>
+              			<f:facet name="header">Last Name</f:facet>
+              			
+              			#{tempCustomer.customerLastName}
+              		</h:column>
+              	</h:dataTable>
               </div>
             </div>
           </div>
-          
-
         </div>
-
-      </div>
-
+        </div>
     </section>
     
     

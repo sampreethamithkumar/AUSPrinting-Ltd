@@ -53,9 +53,9 @@ public class CustomerRepositoryImplementation implements  CustomerRepository
 	}
 
 	@Override
-	public void searchCustomerById(int customerId) {
-		
-		
+	public Customer searchCustomerById(int customerId) {
+		Customer customer = entityManager.find(Customer.class, customerId);
+		return customer;
 	}
 
 	@Override
