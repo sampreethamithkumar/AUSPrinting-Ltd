@@ -1,4 +1,4 @@
-   package fit5042.assx.repository;
+package fit5042.assx.repository;
 
 import java.util.List;
 
