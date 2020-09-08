@@ -1,4 +1,4 @@
-package fit5042.assx.repository;
+   package fit5042.assx.repository;
 
 import java.util.List;
 
@@ -65,6 +65,13 @@ public class CustomerRepositoryImplementation implements  CustomerRepository
 		int lastContactId = customerContactInforamtion.get(customerContactInforamtion.size() - 1).getCustomerContactId();
 		contactInforamtion.setCustomerContactId(lastContactId + 1);
 		entityManager.persist(contactInforamtion);
+	}
+
+	@Override
+	public void editCustomer(Customer customer) {
+		entityManager.merge(customer);
+		entityManager.merge(customer.getContactInformation());
+		
 	}
 
 }
