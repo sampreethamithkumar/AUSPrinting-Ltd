@@ -182,71 +182,117 @@
           <div class="modal-body">
             <div class="form-group">
               <label>First Name</label>
-              <h:inputText value="#{customer.customerFirstName}" class="form-control" placeholder="First Name" id="firstName"/>
+              <h:inputText value="#{customer.customerFirstName}" class="form-control" pt:placeholder="First Name" id="firstName"
+              title="First Name" requiredMessage="Please enter the first name" required="true"/>
+            
+              <h:message for="firstName" class="label label-danger"/>
           	</div>
           	<div class="form-group">
               <label>Last Name</label>
-              <h:inputText value="#{customer.customerLastName}" class="form-control" placeholder="Last Name" id="lastName"/>
+              <h:inputText value="#{customer.customerLastName}" class="form-control" pt:placeholder="Last Name" id="lastName"
+              title="Last Name" required="true" requiredMesage="Please enter the last name" />
+              
+              <h:message for="lastName" class="label label-danger"/>
           	</div>
           	<div class="form-group">
               <label>Street Number</label>
-              <h:inputText value="#{customer.streetNumber}" class="form-control" placeholder="Street Number" id="streetNumber"/>
+              <h:inputText value="#{customer.streetNumber}" class="form-control" pt:placeholder="Street Number" id="streetNumber"
+              required="true" requiredMessage="Please enter the stree number" validatorMessage="Please enter a street number between 1 and 1000"
+              converterMessage="Please enter a number" >
+              <f:convertNumber intergerOnly="true" />
+              <f:validateLongRange minimum="1" maximum="1000" />
+              </h:inputText>
+              
+              <h:message for="streeNumber" class="label label-danger"/>
           	</div>
           	<div class="form-group">
               <label>Street Address</label>
-              <h:inputText value="#{customer.streetAddress}" class="form-control" placeholder="Street Address" id="streetAddress"/>
+              <h:inputText value="#{customer.streetAddress}" class="form-control" pt:placeholder="Street Address" id="streetAddress"
+              required="true" requiredMessage="Please enter the Street Address"/>
+              <h:message for="streetAddress" class="label label-danger" />
           	</div>
           	<div class="form-group">
               <label>Suburb</label>
-              <h:inputText value="#{customer.suburb}" class="form-control" placeholder="Suburb" id="suburb"/>
+              <h:inputText value="#{customer.suburb}" class="form-control" pt:placeholder="Suburb" id="suburb" 
+              required="true" requiredMessage="Please enter the Suburb"/>
+              
+              <h:message for="suburb" class="label label-danger"/>
           	</div>
           	<div class="form-group">
               <label>Postcode</label>
-              <h:inputText value="#{customer.postcode}" class="form-control" placeholder="Postcode" id="postcode"/>
+              <h:inputText value="#{customer.postcode}" class="form-control" pt:placeholder="Postcode" id="postcode"
+              required="true" requiredMessage="Please enter the postcode" validatorMessage="Please enter a post code between 1 and 1000" converterMessage="Please enter a number">
+              <f:convertNumber intergerOnly="true"/>
+              <f:validateLongRange minimum="1" maximum="1000" />
+              </h:inputText>
+              <h:message for="postcode" class="label label-danger"/>
           	</div>
           	<div class="form-group">
               <label>State</label>
-              <h:inputText value="#{customer.state}" class="form-control" placeholder="State" id="state"/>
+              <h:inputText value="#{customer.state}" class="form-control" pt:placeholder="State" id="state"
+              required="true" requiredMessage="Please enter the state"/>
+              <h:message for="state" class="label label-danger"/>
           	</div>
           	<div class="form-group">
               <label>Phone Number</label>
-              <h:inputText value="#{customer.customerPhoneNumber}" class="form-control" placeholder="Phone Number" id="phoneNumber"/>
+              <h:inputText value="#{customer.customerPhoneNumber}" class="form-control" pt:placeholder="Phone Number" id="phoneNumber"
+              required="true" requiredMessage="Please enter the phone number" converterMessage="Please enter a number">
+              	<f:convertNumber intergerOnly="true"/>
+              </h:inputText>
+              <h:message for="phoneNumber" class="label label-danger"/>
           	</div>
      		<div class="form-group">
               <label>Email Id</label>
-              <h:inputText value="#{customer.customerEmail}" class="form-control" placeholder="Email" id="email"/>
+              <h:inputText value="#{customer.customerEmail}" class="form-control" pt:placeholder="Email" id="email"
+              required="true" requiredMessage="Please enter the email Id">
+              </h:inputText>
+              <h:message for="email" class="label label-danger"/>
           	</div>
           	<div class="form-group">
               <label>Date Of Birth</label>
-              <h:inputText value="#{customer.customerDob}" class="form-control" placeholder="Date Of Birth" id="dob"/>
+              <h:inputText value="#{customer.customerDob}" class="form-control" pt:placeholder="Date Of Birth" id="dob"
+              required="true" requiredMessage="Please enter the Date of Birth"/>
+              <h:message for="dob" class="label label-danger"/>
           	</div>
           	<div class="form-group">
               <label>TFN</label>
-              <h:inputText value="#{customer.customerTFN}" class="form-control" placeholder="TFN" id="tfn"/>
+              <h:inputText value="#{customer.customerTFN}" class="form-control" pt:placeholder="TFN" id="tfn"
+              required="true" requiredMessage="Please enter TFN" />
+              <h:message for="tfn" class="label label-danger"/>
           	</div>
 			<div class="form-group">
               <label>Staff Assigning Id</label>
-              <h:inputText value="#{customer.staffId}" class="form-control" placeholder="Staff Id" id="staffId"/>
-          	</div>
-          	<div class="form-group">
-              <label>Industry Id</label>
-              <h:selectOneMenu value="#{customer.industryId}">
-              	<f:selectItems value="#{industryManagedBean.allIndustryId()}"/>
+              <h:selectOneMenu value="#{customer.staffId}" class="form-control">
+              	<f:selectItems value="#{staffManagedBean.allStaffId()}"/>
               </h:selectOneMenu>
           	</div>
           	<div class="form-group">
+              <label>Industry Id</label>
+              <h:selectOneMenu value="#{customer.industryId}" class="form-control">
+              	<f:selectItems value="#{industryManagedBean.allIndustryId()}"/>
+              </h:selectOneMenu>
+              <!-- <h:inputText value="#{customer.industryId}" class="form-control" placeholder="Industry Id" id="industryId"/> -->
+          	</div>
+          	<div class="form-group">
               <label>Printer Id</label>
-              <h:inputText value="#{customer.printerId}" class="form-control" placeholder="Printer Id" id="printerId"/>
+              <h:selectOneMenu value="#{customer.printerId}" class="form-control">
+              	<f:selectItems value="#{printerManagedBean.allPrinterId()}"/>
+              </h:selectOneMenu>
           	</div>
           	<div class="form-group">
               <label>Date Of Purchase</label>
-              <h:inputText value="#{customer.dateOfPurchase}" class="form-control" placeholder="Date Of Purchase" id="dop"/>
+              <h:inputText value="#{customer.dateOfPurchase}" class="form-control" pt:placeholder="Date Of Purchase" id="dop"
+              required="true" requiredMessage="Please enter Date of Purchase"/>
+              <h:message for="dop" class="label label-danger"/>
           	</div>
-			          
+			  <h:outputLabel value="#{customerManagedBean.renderText}"  id="submitted"/>    
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <h:commandButton class="btn btn-primary" action="#{customerManagedBean.addCustomer(customer)}" value="Add"  />
+            <h:commandButton class="btn btn-primary" action="#{customerManagedBean.addCustomer(customer)}" value="Add"  >
+            	<f:ajax execute="@form" render="@form submitted" />
+            </h:commandButton>
+            
           </div>
         </h:form>
         </div>

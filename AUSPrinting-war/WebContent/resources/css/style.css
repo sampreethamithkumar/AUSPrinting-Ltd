@@ -64,3 +64,9 @@ body{
 /* .navbar-brand{
     margin-top: 20px;
 } */
+
+.error
+{
+	color: red;
+	font-weight: bold;
+}

@@ -10,6 +10,8 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
+import org.eclipse.persistence.internal.jaxb.json.schema.model.Property;
+
 import fit5042.assx.entities.Customer;
 import fit5042.assx.entities.CustomerContactInformation;
 
@@ -72,7 +74,16 @@ public class CustomerRepositoryImplementation implements  CustomerRepository
 	public void editCustomer(Customer customer) {
 		entityManager.merge(customer);
 		entityManager.merge(customer.getContactInformation());
-		
 	}
-
+	
+	@Override
+	public List<Customer> getCustomersName(String customerFirstName) {
+		
+		CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+    	CriteriaQuery<Customer> criteriaQuery = builder.createQuery(Customer.class);
+    	Root<Customer> c = criteriaQuery.from(Customer.class);
+    	criteriaQuery.select(c).where(builder.equal(c.get("customerfirstname"),customerFirstName));
+    	List<Customer> result = entityManager.createQuery(criteriaQuery).getResultList();
+        return result;
+	}
 }
