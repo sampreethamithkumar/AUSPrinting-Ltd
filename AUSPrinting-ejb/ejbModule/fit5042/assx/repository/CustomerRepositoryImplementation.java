@@ -35,9 +35,10 @@ public class CustomerRepositoryImplementation implements  CustomerRepository
 	}
 
 	@Override
-	public void removeCustomer(Customer customer) {
-		
-		
+	public void removeCustomer(int customerId) {
+		Customer customer = entityManager.find(Customer.class, customerId);
+		if (customer != null)
+			entityManager.remove(customer);
 	}
 
 	@Override

@@ -77,6 +77,10 @@ public class CustomerManagedBean implements Serializable
 		customerRepository.editCustomer(customer);
 	}
 	
+	public void removeCustomer(int customerId) {
+		customerRepository.removeCustomer(customerId);
+	}
+	
 	public void addContactInformation(CustomerController customerController) {
 		
         CustomerContactInformation contactInforamtion = convertContactInformationToEntity(customerController);

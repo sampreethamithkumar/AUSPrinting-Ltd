@@ -13,7 +13,7 @@ public interface CustomerRepository
 {
 	public void addCustomer(Customer customer) throws Exception;
 	
-	public void removeCustomer(Customer customer);
+	public void removeCustomer(int customerId);
 	
 	public List<Customer> getCustomers();
 	

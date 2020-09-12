@@ -76,6 +76,18 @@ public class CustomerApplication {
 		this.showTable = showTable;
 	}
 	
+	public void searchAllCustomer() {
+		customers.clear();
+		
+		for (Customer cust : customerManagedBean.getCustomers())
+			customers.add(cust);
+
+		setCustomers(customers);
+	}
 	
+	public void removeCustomer(int customerId)
+	{
+		customerManagedBean.removeCustomer(customerId);
+	}
 
 }
