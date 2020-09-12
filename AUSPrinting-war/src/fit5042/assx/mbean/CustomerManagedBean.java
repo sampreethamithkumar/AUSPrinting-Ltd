@@ -52,6 +52,11 @@ public class CustomerManagedBean implements Serializable
 //			// TODO: handle exception
 //		}
 //	}
+	
+	public Customer searchCustomerById(int customerId)
+	{
+		return customerRepository.searchCustomerById(customerId);
+	}
 
 	public String addCustomer(CustomerController customerController) {
 		addContactInformation(customerController);
@@ -66,6 +71,14 @@ public class CustomerManagedBean implements Serializable
 		
 		return "index";
 		
+	}
+	
+	public void editCustomer(Customer customer) {
+		customerRepository.editCustomer(customer);
+	}
+	
+	public void removeCustomer(int customerId) {
+		customerRepository.removeCustomer(customerId);
 	}
 	
 	public void addContactInformation(CustomerController customerController) {

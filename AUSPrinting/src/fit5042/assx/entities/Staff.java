@@ -7,12 +7,17 @@ import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 @Entity
+@NamedQueries({
+	@NamedQuery(name= Staff.GET_ID, query = "SELECT s.staffId FROM Staff s order by s.staffId ")
+})
 public class Staff implements Serializable
 {
-	
+	public static final String GET_ID = "Staff.getId";
 	@Id @GeneratedValue
 	private int staffId;
 	private String staffFname;

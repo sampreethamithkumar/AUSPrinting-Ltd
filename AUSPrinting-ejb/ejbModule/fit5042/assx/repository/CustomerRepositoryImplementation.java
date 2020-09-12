@@ -35,9 +35,10 @@ public class CustomerRepositoryImplementation implements  CustomerRepository
 	}
 
 	@Override
-	public void removeCustomer(Customer customer) {
-		
-		
+	public void removeCustomer(int customerId) {
+		Customer customer = entityManager.find(Customer.class, customerId);
+		if (customer != null)
+			entityManager.remove(customer);
 	}
 
 	@Override
@@ -53,9 +54,9 @@ public class CustomerRepositoryImplementation implements  CustomerRepository
 	}
 
 	@Override
-	public void searchCustomerById(int customerId) {
-		
-		
+	public Customer searchCustomerById(int customerId) {
+		Customer customer = entityManager.find(Customer.class, customerId);
+		return customer;
 	}
 
 	@Override
@@ -65,6 +66,13 @@ public class CustomerRepositoryImplementation implements  CustomerRepository
 		int lastContactId = customerContactInforamtion.get(customerContactInforamtion.size() - 1).getCustomerContactId();
 		contactInforamtion.setCustomerContactId(lastContactId + 1);
 		entityManager.persist(contactInforamtion);
+	}
+
+	@Override
+	public void editCustomer(Customer customer) {
+		entityManager.merge(customer);
+		entityManager.merge(customer.getContactInformation());
+		
 	}
 
 }

@@ -13,12 +13,14 @@ public interface CustomerRepository
 {
 	public void addCustomer(Customer customer) throws Exception;
 	
-	public void removeCustomer(Customer customer);
+	public void removeCustomer(int customerId);
 	
 	public List<Customer> getCustomers();
 	
-	public void searchCustomerById(int customerId);
+	public Customer searchCustomerById(int customerId);
 	
 	public void addContactInformation(CustomerContactInformation contactInforamtion);
+	
+	public void editCustomer(Customer customer);
 	
 }
