@@ -14,21 +14,28 @@ public class SearchCustomer {
 	CustomerApplication customerApplication;
 	
 	private int searchById;
-	private String searchByFirstName;
-	
-	
-	public String getSearchByFirstName() {
-		return searchByFirstName;
-	}
 
-	public void setSearchByFirstName(String searchByFirstName) {
-		this.searchByFirstName = searchByFirstName;
-	}
-
+	private String searchByName;
+	
 	public SearchCustomer(){
 		
 	}
 	
+	public SearchCustomer(CustomerApplication customerApplication, int searchById, String searchByName) {
+		super();
+		this.customerApplication = customerApplication;
+		this.searchById = searchById;
+		this.searchByName = searchByName;
+	}
+	
+	public String getSearchByName() {
+		return searchByName;
+	}
+
+	public void setSearchByName(String searchByName) {
+		this.searchByName = searchByName;
+	}
+
 	public CustomerApplication getCustomerApplication() {
 		return customerApplication;
 	}
@@ -50,8 +57,7 @@ public class SearchCustomer {
 		customerApplication.searchCustomerById(customerId);
 	}
 	
-	public void searchCustomerByName(String customerFirstName)
-	{
-		
+	public void searchCustomerByName(String firstName) {
+		customerApplication.customerByName(firstName);
 	}
 }

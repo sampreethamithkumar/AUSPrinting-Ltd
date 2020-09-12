@@ -22,5 +22,6 @@ public interface CustomerRepository
 	public void addContactInformation(CustomerContactInformation contactInforamtion);
 	
 	public void editCustomer(Customer customer);
-	
+
+	List<Customer> getCustomersName(String customerFirstName);
 }

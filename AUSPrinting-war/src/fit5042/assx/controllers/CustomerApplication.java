@@ -22,8 +22,6 @@ public class CustomerApplication {
 	private List<Customer> customers;
 	
 	private boolean showTable = false;
-	
-	
 
 	public CustomerApplication() {
 		customers = new ArrayList<Customer>();
@@ -90,4 +88,23 @@ public class CustomerApplication {
 		customerManagedBean.removeCustomer(customerId);
 	}
 
+//	public void searchCustomerByName(String firstName) {
+//		customers.clear();
+//		
+//		setShowTable(true);
+//		for (Customer customer : customerManagedBean.getCustomerByName(firstName))
+//			customers.add(customer);
+//		
+//		setCustomers(customers);
+//	}
+	
+	public void customerByName(String customerFirstName) {
+		customers.clear();
+		
+		setShowTable(true);
+		for (Customer cust: customerManagedBean.getCustomerByName(customerFirstName))
+			customers.add(cust);
+		
+		setCustomers(customers);
+	}
 }

@@ -8,6 +8,8 @@ import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.enterprise.context.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 import fit5042.assx.controllers.CustomerController;
@@ -25,6 +27,10 @@ public class CustomerManagedBean implements Serializable
 {
 	@EJB
 	CustomerRepository customerRepository;
+	
+	private boolean showRender = false;
+	
+	private String renderText;
 
 	public CustomerManagedBean() {
 		super();
@@ -53,24 +59,46 @@ public class CustomerManagedBean implements Serializable
 //		}
 //	}
 	
+	public CustomerRepository getCustomerRepository() {
+		return customerRepository;
+	}
+
+	public String getRenderText() {
+		return renderText;
+	}
+
+	public void setRenderText(String renderText) {
+		this.renderText = renderText;
+	}
+
+	public void setCustomerRepository(CustomerRepository customerRepository) {
+		this.customerRepository = customerRepository;
+	}
+
+	public boolean isShowRender() {
+		return showRender;
+	}
+
+	public void setShowRender(boolean showRender) {
+		this.showRender = showRender;
+	}
+
 	public Customer searchCustomerById(int customerId)
 	{
 		return customerRepository.searchCustomerById(customerId);
 	}
 
-	public String addCustomer(CustomerController customerController) {
+	public void addCustomer(CustomerController customerController) {
 		addContactInformation(customerController);
 		Customer customer = convertCustomerToEntity(customerController);
 		
 		try {
 			customerRepository.addCustomer(customer);
+			footerRender();
 		}
 		catch (Exception e) {
 			// TODO: handle exception
 		}
-		
-		return "index";
-		
 	}
 	
 	public void editCustomer(Customer customer) {
@@ -149,5 +177,20 @@ public class CustomerManagedBean implements Serializable
 		customer.setDateOfPurchase(customerController.getDateOfPurchase());
 		
 		return customer;	
+	}
+	
+	public List<Customer> getCustomerByName(String firstName){
+		return customerRepository.getCustomersName(firstName);
+	}
+	
+//	public void validateDataPoint(FacesContext context, UIComponent component, Object convertedValue) {
+//	    if (!dao.fieldExists((String) convertedValue)) {
+//	        throw new ValidatorException(new FacesMessage("Value not found in database."));
+//	    }
+//	}   
+	
+	public void footerRender() {
+		
+		setRenderText("Customer Added Successfully!!");
 	}
 }
