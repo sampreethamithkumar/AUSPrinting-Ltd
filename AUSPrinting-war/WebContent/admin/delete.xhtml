@@ -2,7 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
 	<h:head>
 		<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"></link>
@@ -114,14 +115,14 @@
                       <th>Delete</th>
                   </tr>
                   
-                  <ui:repeat var="tempcustomer" value="#{removeCustomer.allCustomers}" id="customerTable" varStatus="status">
+                  <ui:repeat var="tempcustomer" value="#{removeCustomer.customersByStaff}" id="customerTable" varStatus="status">
                   <tr>
                   	<td><h:outputText value="#{tempcustomer.customerId}" id="customerID" ></h:outputText></td>
                   	<td>#{tempcustomer.customerFirstName}</td>
                   	<td>#{tempcustomer.customerLastName}</td>
                   	<td>
                   		<h:form>
-                  		<h:commandButton action="#{removeCustomer.removeCustomer(removeCustomer.allCustomers.get(status.index).customerId)}" value="Delete" 
+                  		<h:commandButton action="#{removeCustomer.removeCustomer(tempcustomer.customerId)}" value="Delete" 
                   		disabled= "#{removeCustomer.allCustomers.get(status.index).customerId == null}" class="btn btn-danger"/>
                   		</h:form>
                   	</td>

@@ -48,7 +48,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-10">
-            <h1><span class="glyphicon glyphicon-user" aria-hidden="true"></span>Customer<small> Admin login</small></h1>
+            <h1><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>Customer<small> Admin login</small></h1>
           </div>
           <div class="col-md-2">
             <div class="dropdown create">
@@ -67,7 +67,8 @@
         <ol class="breadcrumb">
 			<li><h:link value="Dashboard" outcome="index"/> > </li>        
           	<li><h:link value ="Customer" outcome ="customer"/> > </li>
-          	<li class="active"><h:link value="Edit" outcome="Edit" /></li>
+          	<li><h:link value = "Edit" outcome ="Edit" /> > </li>
+          	<li class="active"><h:link value="Customer Edit" outcome="customerEdit" /></li>
         </ol>
       </div>
     </section>
@@ -105,30 +106,60 @@
               	<div class="panel-heading maincolor">
                 	<h3 class="panel-title">Edit Customers</h3>
               	</div>
-              	
               <div class="panel-body">
-              	<table class="table table-striped table-hover">
-                  <tr>
-                      <th>Customer Id</th>
-                      <th>First Name</th>
-                      <th>Last Name</th>
-                      <th>Edit</th>
-                  </tr>
-                  
-                  <ui:repeat var="tempcustomer" value="#{customerManagedBean.customers}" id="customerTable" varStatus="status">
-                  <tr>
-                  	<td><h:outputText value="#{tempcustomer.customerId}" id="customerID" ></h:outputText></td>
-                  	<td>#{tempcustomer.customerFirstName}</td>
-                  	<td>#{tempcustomer.customerLastName}</td>
-                  	<td>
-                  		<h:link value="Edit" outcome="customerEdit.xhtml"> 
-              				
-              				<f:param name="customerID" value="#{tempcustomer.customerId}"/>
-              			</h:link>
-                  	</td>
-                  </tr>
-                  </ui:repeat>
-              </table>
+              	<h:outputLabel id="id" >#{customerEditController.customer.customerId}</h:outputLabel>
+              	<h:form>
+              		<div class="form-group">
+              			<label>First Name</label>
+              			<h:inputText value="#{customerEditController.customer.customerFirstName}" binding="#{customerFirstName}" class="form-control" id="formFirstName"/>
+          			</div>
+          			<div class="form-group">
+              			<label>Last Name</label>
+              			<h:inputText value="#{customerEditController.customer.customerLastName}" binding="#{customerLastName}" class="form-control" id="formLatName"/>
+          			</div>
+          			<div class="form-group">
+              			<label>Street Number</label>
+              			<h:inputText value="#{customerEditController.customer.contactInformation.customerAddress.streetNumber}" binding="#{streetNumber}" class="form-control" id="formStreetNumber"/>
+          			</div>
+					<div class="form-group">
+              			<label>Street Address</label>
+              			<h:inputText value="#{customerEditController.customer.contactInformation.customerAddress.streetAddress}" binding="#{streetNumber}" class="form-control" id="formStreetAddress"/>
+          			</div>
+          			<div class="form-group">
+              			<label>Suburb</label>
+              			<h:inputText value="#{customerEditController.customer.contactInformation.customerAddress.suburb}" binding="#{suburb}" class="form-control" id="formSuburb"/>
+          			</div>
+          			<div class="form-group">
+              			<label>Postcode</label>
+              			<h:inputText value="#{customerEditController.customer.contactInformation.customerAddress.postcode}" binding="#{postcode}" class="form-control" id="formPostcode"/>
+          			</div>
+          			<div class="form-group">
+              			<label>State</label>
+              			<h:inputText value="#{customerEditController.customer.contactInformation.customerAddress.state}" binding="#{state}" class="form-control" id="formState"/>
+          			</div>             			
+          			<div class="form-group">
+              			<label>Phone number</label>
+              			<h:inputText value="#{customerEditController.customer.contactInformation.customerPhoneNumber}" binding="#{customerPhoneNumber}" class="form-control" id="formPhoneNumber"/>
+          			</div>
+          			<div class="form-group">
+              			<label>Email Id</label>
+              			<h:inputText value="#{customerEditController.customer.contactInformation.customerEmail}" binding="#{customerEmail}" class="form-control" id="formEmail"/>
+          			</div>
+          			<div class="form-group">
+              			<label>Date of Birth</label>
+              			<h:inputText value="#{customerEditController.customer.contactInformation.customerDob}" binding="#{customerDob}" class="form-control" id="formDob"/>
+          			</div>
+          			<div class="form-group">
+              			<label>TFN</label>
+              			<h:inputText value="#{customerEditController.customer.contactInformation.customerTFN}" binding="#{customerTFN}" class="form-control" id="formTFN"/>
+          			</div>
+          			
+          			<h:commandButton id="save" value="Save" action="#{customerManagedBean.editCustomer(customerEditController.customer)}"  class="btn btn-primary" >
+                    <f:param name="customerID" value="#{customerEditController.customerId+1}"/>
+                </h:commandButton>
+                <h:link id="close" value="Close" outcome="Edit.xhtml"
+						          class="btn btn-default" />  
+              	</h:form>
               </div>
             </div>
           </div>

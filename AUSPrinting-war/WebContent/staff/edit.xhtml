@@ -115,7 +115,7 @@
                       <th>Edit</th>
                   </tr>
                   
-                  <ui:repeat var="tempcustomer" value="#{customerManagedBean.customers}" id="customerTable" varStatus="status">
+                  <ui:repeat var="tempcustomer" value="#{customerApplication.customerByStaff()}" id="customerTable" varStatus="status">
                   <tr>
                   	<td><h:outputText value="#{tempcustomer.customerId}" id="customerID" ></h:outputText></td>
                   	<td>#{tempcustomer.customerFirstName}</td>

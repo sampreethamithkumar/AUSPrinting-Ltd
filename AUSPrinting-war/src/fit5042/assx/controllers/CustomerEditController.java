@@ -44,7 +44,11 @@ public class CustomerEditController
                     .getValue(context, null, "customerApplication");
 				
 			app.updateCustomerList();
-			return app.getCustomers().get(--customerId);
+			
+			for(Customer cust: app.getCustomers())
+				if (cust.getCustomerId() == customerId)
+					return cust;
+//			return app.getCustomers().get(--customerId);
 		}
 		return customer;
 	}

@@ -48,16 +48,7 @@ public class CustomerManagedBean implements Serializable
 		return null;
 	}
 	
-	
 
-//	public void addCustomer(Customer customer) {
-//		try {
-//			customerRepository.addCustomer(customer);
-//		}
-//		catch (Exception e) {
-//			// TODO: handle exception
-//		}
-//	}
 	
 	public CustomerRepository getCustomerRepository() {
 		return customerRepository;
@@ -141,23 +132,11 @@ public class CustomerManagedBean implements Serializable
 	public Customer convertCustomerToEntity(CustomerController customerController)
 	{
 		Customer customer = new Customer();
-//		String streetNumber = customerController.getStreetNumber();
-//        String streetAddress = customerController.getStreetAddress();
-//        String suburb = customerController.getSuburb();
-//        String postcode = customerController.getPostcode();
-//        String state = customerController.getState();
-//        Address address = new Address(streetNumber, streetAddress, suburb, postcode, state);
-//        long phoneNumber = customerController.getCustomerPhoneNumber();
-//        String email = customerController.getCustomerEmail();
-//        String dob = customerController.getCustomerDob();
-//        String tfn = customerController.getCustomerTFN();
-//        int contactId = customerController.getCustomerContactId();
-//        CustomerContactInformation contactInformation = new CustomerContactInformation(contactId, address, phoneNumber, email, dob, tfn);
 		customer.setContactInformation(convertContactInformationToEntity(customerController));
         int staffId = customerController.getStaffId();
 		String staffFname = customerController.getStaffFname();
 		String staffLname = customerController.getStaffLname();
-		String staffTFN = customerController.getCustomerTFN();
+		String staffTFN = customerController.getStaffTFN();
 		Address staffAddress = customerController.getStaffAddress();
 		String staffEmail = customerController.getStaffEmail();
 		long staffPhoneNumber = customerController.getStaffPhoneNumber();
@@ -183,11 +162,6 @@ public class CustomerManagedBean implements Serializable
 		return customerRepository.getCustomersName(firstName);
 	}
 	
-//	public void validateDataPoint(FacesContext context, UIComponent component, Object convertedValue) {
-//	    if (!dao.fieldExists((String) convertedValue)) {
-//	        throw new ValidatorException(new FacesMessage("Value not found in database."));
-//	    }
-//	}   
 	
 	public void footerRender() {
 		

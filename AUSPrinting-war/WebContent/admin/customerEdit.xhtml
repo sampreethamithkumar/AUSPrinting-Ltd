@@ -2,7 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
 	<h:head>
 		<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"></link>
@@ -154,7 +155,7 @@
           			</div>
           			
           			<h:commandButton id="save" value="Save" action="#{customerManagedBean.editCustomer(customerEditController.customer)}"  class="btn btn-primary" >
-                    <f:param name="customerID" value="#{customerEditController.customerId+1}"/>
+                    <f:param name="customerID" value="#{customerEditController.customerId}"/>
                 </h:commandButton>
                 <h:link id="close" value="Close" outcome="Edit.xhtml"
 						          class="btn btn-default" />  

@@ -491,10 +491,6 @@ public class CustomerController implements Serializable
 		this.customerTFN = customerTFN;
 	}
 
-
-
-
-
 	@Override
 	public String toString() {
 		return "Customer [customerId=" + customerId + ", staff=" + staff + ", industry=" + industry
