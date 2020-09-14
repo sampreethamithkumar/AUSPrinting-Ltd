@@ -48,7 +48,7 @@
 			<ul class="nav navbar-nav navbar-right">
 				<li class="active"><h:link value="Welcome,Admin"
 						outcome="index" /></li>
-				<li><h:link value="Logout" outcome="index" /></li>
+				<li><h:outputLink value="../faces/index.xhtml">Log out</h:outputLink></li>
 			</ul>
 		</div>
 	</div>
@@ -222,10 +222,10 @@
 							<h:inputText value="#{staffController.postcode}"
 								class="form-control" pt:placeholder="Postcode" id="postcode"
 								required="true" requiredMessage="Please enter the postcode"
-								validatorMessage="Please enter a post code between 1 and 1000"
+								validatorMessage="Please enter a post code between 1 and 10000"
 								converterMessage="Please enter a number">
 								<f:convertNumber intergerOnly="true" />
-								<f:validateLongRange minimum="1" maximum="1000" />
+								<f:validateLongRange minimum="1" maximum="10000" />
 							</h:inputText>
 							<h:message for="postcode" class="label label-danger" />
 						</div>

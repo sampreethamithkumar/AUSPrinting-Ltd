@@ -14,7 +14,7 @@
 		<h:outputStylesheet library="fonts" name="glyphicons-halflings-regular.ttf" />
 		<h:outputStylesheet library="fonts" name="glyphicons-halflings-regular.woff" />
 		<h:outputStylesheet library="fonts" name="glyphicons-halflings-regular.woff2" />
-		<title>Admin | Dashboard</title>
+		<title>Staff | Dashboard</title>
 	</h:head>
 	<h:body>
 		<nav class="navbar navbar-inverse">
@@ -26,18 +26,17 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <h:link class="navbar-brand textColor" value="Admin" outcome="index" />
+          <h:link class="navbar-brand textColor" value="Staff" outcome="index" />
           <!--  <a class="navbar-brand textColor" href="#">Admin</a>-->
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li role="presentation" class="active"><h:link value = "Dashboard" outcome = "index" /></li>
             <li role="presentation"><h:link value="Customer" outcome="customer"/></li>
-            <li role="presentation"><h:link value="Staff" outcome="index"/></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li class="active"><h:link value="Welcome,Admin" outcome="index" /></li>
-            <li><h:outputLink value="index.xhtml">Log out</h:outputLink></li>
+            <li class="active"><h:link value="Welcome,Staff" outcome="index" /></li>
+            <li><h:outputLink value="../faces/index.xhtml">Log out</h:outputLink></li>
             <!--  <li><h:link value="Logout" outcome="index"/></li> -->
           </ul>
         </div>
@@ -49,7 +48,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-10">
-            <h1><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>Dashboard<small> Admin login</small></h1>
+            <h1><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>Dashboard<small> Staff login</small></h1>
           </div>
           <div class="col-md-2">
             <div class="dropdown create">
@@ -103,32 +102,20 @@
           <div class="col-md-9">
             <div class="panel panel-default">
               <div class="panel-heading maincolor">
-                <h3 class="panel-title">Website Over View</h3>
+                <h3 class="panel-title">Customer Over View</h3>
               </div>
               <div class="panel-body">
                 <div class="col-md-3">
                   <div class="well dash-box">
                     <h2><span class="glyphicon glyphicon-user" aria-hidden="true"></span> 203</h2>
-                    <h4>Users</h4>
-                  </div>
-                </div>
-                <div class="col-md-3">
-                  <div class="well dash-box">
-                    <h2><span class="glyphicon glyphicon-user" aria-hidden="true"></span> 203</h2>
-                    <h4>Users</h4>
-                  </div>
-                </div>
-                <div class="col-md-3">
-                  <div class="well dash-box">
-                    <h2><span class="glyphicon glyphicon-user" aria-hidden="true"></span> 203</h2>
-                    <h4>Users</h4>
+                    <h4>Customers</h4>
                   </div>
                 </div>
               </div>
             </div>
             <div class="panel panel-default">
               <div class="panel-heading">
-                <h3 class="panel-title">Customers Added</h3>
+                <h3 class="panel-title">Customers</h3>
               </div>
               <div class="panel-body">
                 <table class="table table-striped table-hover" id="ajaxUpdatedTable">

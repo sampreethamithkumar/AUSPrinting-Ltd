@@ -33,11 +33,11 @@
           <ul class="nav navbar-nav">
             <li role="presentation"><h:link value = "Dashboard" outcome = "index" /></li>
             <li role="presentation" class="active" ><h:link value="Customer" outcome="customer"/></li>
-            <li role="presentation"><h:link value="Staff" outcome="index"/></li>
+            <li role="presentation"><h:link value="Staff" outcome="staff"/></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li class="active"><h:link value="Welcome,Admin" outcome="index" /></li>
-            <li><h:link value="Logout" outcome="index"/></li>
+            <li><h:outputLink value="../faces/index.xhtml">Log out</h:outputLink>></li>
           </ul>
         </div>
       </div>

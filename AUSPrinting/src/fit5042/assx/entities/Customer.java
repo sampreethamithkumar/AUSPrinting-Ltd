@@ -3,6 +3,7 @@ package fit5042.assx.entities;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -13,9 +14,7 @@ import javax.persistence.OneToOne;
 
 
 @Entity
-//@NamedQueries({
-//	@NamedQuery(name = Customer.GET_ALL_CUSTOMERS)
-//})
+
 public class Customer implements Serializable
 {
 	@Id @GeneratedValue
@@ -80,7 +79,7 @@ public class Customer implements Serializable
 		this.industryId = industryId;
 	}
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	public CustomerContactInformation getContactInformation() 
 	{
 		return contactInformation;
