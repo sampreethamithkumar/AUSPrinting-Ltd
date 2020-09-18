@@ -1,6 +1,8 @@
 package fit5042.assx.mbean;
 
 import java.io.Serializable;
+import java.sql.Date;
+import java.util.Calendar;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -122,7 +124,7 @@ public class CustomerManagedBean implements Serializable
         Address address = new Address(streetNumber, streetAddress, suburb, postcode, state);
         long phoneNumber = customerController.getCustomerPhoneNumber();
         String email = customerController.getCustomerEmail();
-        String dob = customerController.getCustomerDob();
+        Date dob = new java.sql.Date(customerController.getCustomerDob().getTime());
         String tfn = customerController.getCustomerTFN();
         int contactId = customerController.getCustomerContactId();
         CustomerContactInformation contactInformation = new CustomerContactInformation(contactId, address, phoneNumber, email, dob, tfn);
@@ -153,7 +155,8 @@ public class CustomerManagedBean implements Serializable
 		customer.setCustomerId(customerController.getCustomerId());
 		customer.setCustomerFirstName(customerController.getCustomerFirstName());
 		customer.setCustomerLastName(customerController.getCustomerLastName());
-		customer.setDateOfPurchase(customerController.getDateOfPurchase());
+		
+		customer.setDateOfPurchase(new java.sql.Date(customerController.getDateOfPurchase().getTime()));
 		
 		return customer;	
 	}

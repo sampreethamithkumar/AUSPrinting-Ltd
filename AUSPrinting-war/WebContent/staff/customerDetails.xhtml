@@ -221,9 +221,9 @@
           	<div class="form-group">
               <label>Postcode</label>
               <h:inputText value="#{customer.postcode}" class="form-control" pt:placeholder="Postcode" id="postcode"
-              required="true" requiredMessage="Please enter the postcode" validatorMessage="Please enter a post code between 1 and 1000" converterMessage="Please enter a number">
+              required="true" requiredMessage="Please enter the postcode" validatorMessage="Please enter a post code between 1 and 100000" converterMessage="Please enter a number">
               <f:convertNumber intergerOnly="true"/>
-              <f:validateLongRange minimum="1" maximum="1000" />
+              <f:validateLongRange minimum="1" maximum="100000" />
               </h:inputText>
               <h:message for="postcode" class="label label-danger"/>
           	</div>
@@ -251,7 +251,9 @@
           	<div class="form-group">
               <label>Date Of Birth</label>
               <h:inputText value="#{customer.customerDob}" class="form-control" pt:placeholder="Date Of Birth" id="dob"
-              required="true" requiredMessage="Please enter the Date of Birth"/>
+              required="true" requiredMessage="Please enter the Date of Birth">
+             <f:convertDateTime pattern = "dd-MM-yyyy" />
+              </h:inputText>
               <h:message for="dob" class="label label-danger"/>
           	</div>
           	<div class="form-group">
@@ -282,7 +284,9 @@
           	<div class="form-group">
               <label>Date Of Purchase</label>
               <h:inputText value="#{customer.dateOfPurchase}" class="form-control" pt:placeholder="Date Of Purchase" id="dop"
-              required="true" requiredMessage="Please enter Date of Purchase"/>
+              required="true" requiredMessage="Please enter Date of Purchase"> 
+              <f:convertDateTime pattern = "dd-MM-yyyy" />
+              </h:inputText>
               <h:message for="dop" class="label label-danger"/>
           	</div>
 			  <h:outputLabel value="#{customerManagedBean.renderText}"  id="submitted"/>    

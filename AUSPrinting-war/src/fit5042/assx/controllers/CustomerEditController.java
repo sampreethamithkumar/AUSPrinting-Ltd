@@ -1,5 +1,7 @@
 package fit5042.assx.controllers;
 
+import java.util.Date;
+
 import javax.el.ELContext;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
@@ -15,6 +17,8 @@ public class CustomerEditController
 	
 	private Customer customer;
 	
+//	private Date customerDob;
+	
 	public CustomerEditController()
 	{
 		customerId = Integer.valueOf(FacesContext.getCurrentInstance()
@@ -24,7 +28,20 @@ public class CustomerEditController
 		
 		customer = getCustomer();
 		
+//		customerDob = new java.util.Date(customer.getContactInformation().getCustomerDob().getTime());
+		
 	}
+
+	
+//	public Date getCustomerDob() {
+//		return customerDob;
+//	}
+//
+//
+//	public void setCustomerDob(Date customerDob) {
+//		this.customerDob = customerDob;
+//	}
+
 
 	public int getCustomerId() {
 		return customerId;
@@ -50,6 +67,8 @@ public class CustomerEditController
 					return cust;
 //			return app.getCustomers().get(--customerId);
 		}
+//		setCustomer(customer.getContactInformation().setCustomerDob(new java.sql.Date(customerDob.getTime())));
+//		//customer.getContactInformation().getCustomerDob();
 		return customer;
 	}
 

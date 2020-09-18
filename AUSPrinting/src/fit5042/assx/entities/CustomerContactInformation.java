@@ -1,13 +1,14 @@
 package fit5042.assx.entities;
 
 import java.io.Serializable;
-
+import java.sql.Date;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 
 @Entity
 @NamedQueries({
@@ -21,17 +22,18 @@ public class CustomerContactInformation implements Serializable
 	private Address customerAddress;
 	private long customerPhoneNumber;
 	private String customerEmail;
-	private String customerDob;
+	private Date customerDob;
 	private String customerTFN;
 	
 	public CustomerContactInformation() 
 	{
 		super();
 	}
-
+	
+	
+	
 	public CustomerContactInformation(int customerContactId, Address customerAddress, long customerPhoneNumber,
-			String customerEmail, String customerDob, String customerTFN) 
-	{
+			String customerEmail, Date customerDob, String customerTFN) {
 		super();
 		this.customerContactId = customerContactId;
 		this.customerAddress = customerAddress;
@@ -40,7 +42,21 @@ public class CustomerContactInformation implements Serializable
 		this.customerDob = customerDob;
 		this.customerTFN = customerTFN;
 	}
-	
+
+
+
+	public Date getCustomerDob() {
+		return customerDob;
+	}
+
+
+
+	public void setCustomerDob(Date customerDob) {
+		this.customerDob = customerDob;
+	}
+
+
+
 	public int getCustomerContactId() 
 	{
 		return customerContactId;
@@ -82,16 +98,6 @@ public class CustomerContactInformation implements Serializable
 		this.customerEmail = customerEmail;
 	}
 	
-	public String getCustomerDob() 
-	{
-		return customerDob;
-	}
-	
-	public void setCustomerDob(String customerDob) 
-	{
-		this.customerDob = customerDob;
-	}
-	
 	public String getCustomerTFN() 
 	{
 		return customerTFN;
@@ -101,11 +107,14 @@ public class CustomerContactInformation implements Serializable
 		this.customerTFN = customerTFN;
 	}
 
+
+
 	@Override
-	public String toString() 
-	{
+	public String toString() {
 		return "CustomerContactInformation [customerContactId=" + customerContactId + ", customerAddress="
 				+ customerAddress + ", customerPhoneNumber=" + customerPhoneNumber + ", customerEmail=" + customerEmail
 				+ ", customerDob=" + customerDob + ", customerTFN=" + customerTFN + "]";
 	}
+
+
 }
