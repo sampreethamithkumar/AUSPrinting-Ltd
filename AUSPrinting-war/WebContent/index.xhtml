@@ -6,12 +6,20 @@
       xmlns:b="http://bootsfaces.net/ui"
       xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
+	
+	<h:body>
+	
+	Index page
 	<h:form>
-	<h:body>Index page</h:body>
 	
 	
-	<h:commandButton action="admin/index" value="Admin Login" />
+	<!-- <h:commandButton action="faces/admin/index.xhtml" value="Admin Login" /> -->
+	<!--  -->
 	
 	<h:commandButton action="staff/index" value="Staff Login" />
 	</h:form>
+	<!-- <button action="faces/admin/index.xhtml">Admin Login</button> -->
+	<!-- <h:commandButton action="/faces/admin/index.xhtml" value="Admin Login" /> -->
+	<h:outputLink value="faces/admin/index.xhtml">Access Administration</h:outputLink>
+	</h:body>
 </html>
