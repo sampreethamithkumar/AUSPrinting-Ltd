@@ -285,7 +285,9 @@
           	<div class="form-group">
               <label>Date Of Purchase</label>
               <h:inputText value="#{customer.dateOfPurchase}" class="form-control" pt:placeholder="Date Of Purchase" id="dop"
-              required="true" requiredMessage="Please enter Date of Purchase"/>
+              required="true" requiredMessage="Please enter Date of Purchase"> 
+              <f:convertDateTime pattern = "dd-MM-yyyy" />
+              </h:inputText>
               <h:message for="dop" class="label label-danger"/>
           	</div>
 			  <h:outputLabel value="#{customerManagedBean.renderText}"  id="submitted"/>    

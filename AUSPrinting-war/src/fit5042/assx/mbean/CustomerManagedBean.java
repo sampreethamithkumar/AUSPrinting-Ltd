@@ -124,12 +124,7 @@ public class CustomerManagedBean implements Serializable
         Address address = new Address(streetNumber, streetAddress, suburb, postcode, state);
         long phoneNumber = customerController.getCustomerPhoneNumber();
         String email = customerController.getCustomerEmail();
-//        @SuppressWarnings("deprecation")
-//        Calendar cal = Calendar.getInstance();
-//        cal.add(Calendar.DATE, -1);
         Date dob = new java.sql.Date(customerController.getCustomerDob().getTime());
-//        Date dob = new java.sql.Date(customerController.getCustomerDob().getDate());
-//        Date dob = Date.valueOf(customerController.getCustomerDob().toString());
         String tfn = customerController.getCustomerTFN();
         int contactId = customerController.getCustomerContactId();
         CustomerContactInformation contactInformation = new CustomerContactInformation(contactId, address, phoneNumber, email, dob, tfn);
@@ -160,7 +155,8 @@ public class CustomerManagedBean implements Serializable
 		customer.setCustomerId(customerController.getCustomerId());
 		customer.setCustomerFirstName(customerController.getCustomerFirstName());
 		customer.setCustomerLastName(customerController.getCustomerLastName());
-		customer.setDateOfPurchase(customerController.getDateOfPurchase());
+		
+		customer.setDateOfPurchase(new java.sql.Date(customerController.getDateOfPurchase().getTime()));
 		
 		return customer;	
 	}

@@ -2,6 +2,7 @@ package fit5042.assx.entities;
 
 
 import java.io.Serializable;
+import java.sql.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -28,7 +29,7 @@ public class Customer implements Serializable
 	private String customerFirstName;
 	private String customerLastName;
 	private Printer printer_id;
-	private String dateOfPurchase;
+	private Date dateOfPurchase;
 	public static final String GET_ALL_QUERY_NAME = "Customer.getAll";
 	
 	public Customer() 
@@ -36,10 +37,10 @@ public class Customer implements Serializable
 		super();
 	}
 	
-	public Customer(int customerId, Staff staffId, Industry industryId,
-			CustomerContactInformation contactInformation, String customerFirstName, String customerLastName,
-			Printer printer_id, String dateOfPurchase) 
-	{
+	
+
+	public Customer(int customerId, Staff staffId, Industry industryId, CustomerContactInformation contactInformation,
+			String customerFirstName, String customerLastName, Printer printer_id, Date dateOfPurchase) {
 		super();
 		this.customerId = customerId;
 		this.staffId = staffId;
@@ -50,6 +51,20 @@ public class Customer implements Serializable
 		this.printer_id = printer_id;
 		this.dateOfPurchase = dateOfPurchase;
 	}
+
+
+
+	public Date getDateOfPurchase() {
+		return dateOfPurchase;
+	}
+
+
+
+	public void setDateOfPurchase(Date dateOfPurchase) {
+		this.dateOfPurchase = dateOfPurchase;
+	}
+
+
 
 	public int getCustomerId() 
 	{
@@ -125,15 +140,7 @@ public class Customer implements Serializable
 		this.printer_id = printer_id;
 	}
 	
-	public String getDateOfPurchase() 
-	{
-		return dateOfPurchase;
-	}
-	
-	public void setDateOfPurchase(String dateOfPurchase) 
-	{
-		this.dateOfPurchase = dateOfPurchase;
-	}
+
 
 	@Override
 	public String toString() 
