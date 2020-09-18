@@ -37,4 +37,8 @@ public class RemoveCustomer {
 	{
 		customerApplication.removeCustomer(customerId);
 	}
+	
+	public List<Customer> getCustomersByStaff(){
+		return customerApplication.customerByStaff();
+	}
 }

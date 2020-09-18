@@ -11,7 +11,7 @@ import fit5042.assx.entities.Customer;
 @RequestScoped
 public class CustomerDetails {
 
-private int customerId;
+	private int customerId;
 	
 	private Customer customer;
 	

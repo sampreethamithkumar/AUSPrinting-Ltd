@@ -88,15 +88,6 @@ public class CustomerApplication {
 		customerManagedBean.removeCustomer(customerId);
 	}
 
-//	public void searchCustomerByName(String firstName) {
-//		customers.clear();
-//		
-//		setShowTable(true);
-//		for (Customer customer : customerManagedBean.getCustomerByName(firstName))
-//			customers.add(customer);
-//		
-//		setCustomers(customers);
-//	}
 	
 	public void customerByName(String customerFirstName) {
 		customers.clear();
@@ -106,5 +97,17 @@ public class CustomerApplication {
 			customers.add(cust);
 		
 		setCustomers(customers);
+	}
+	
+	public List<Customer> customerByStaff() {
+		customers.clear();
+		
+		for (Customer cust: customerManagedBean.getCustomers())
+			if (cust.getStaffId().getStaffId() == 1)
+				customers.add(cust);
+		
+		setCustomers(customers);
+		
+		return customers;
 	}
 }

@@ -2,7 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
 	<h:head>
 		<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"></link>
@@ -32,11 +33,11 @@
           <ul class="nav navbar-nav">
             <li role="presentation"><h:link value = "Dashboard" outcome = "index" /></li>
             <li role="presentation" class="active" ><h:link value="Customer" outcome="customer"/></li>
-            <li role="presentation"><h:link value="Staff" outcome="index"/></li>
+            <li role="presentation"><h:link value="Staff" outcome="staff"/></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li class="active"><h:link value="Welcome,Admin" outcome="index" /></li>
-            <li><h:link value="Logout" outcome="index"/></li>
+            <li><h:outputLink value="../faces/index.xhtml">Log out</h:outputLink>></li>
           </ul>
         </div>
       </div>
@@ -119,7 +120,6 @@
                   	<td>#{tempcustomer.customerLastName}</td>
                   	<td>
                   		<h:link value="View" outcome="customerDetails.xhtml"> 
-              				
               				<f:param name="customerID" value="#{status.index + 1}"/>
               			</h:link>
                   	</td>
@@ -261,7 +261,7 @@
             </h:commandButton>
             
           </div>
-        </h:form>>
+        </h:form>
         </div>
       </div>
     </div>
