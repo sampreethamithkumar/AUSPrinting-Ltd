@@ -35,7 +35,7 @@
             <li role="presentation"><h:link value="Customer" outcome="customer"/></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li class="active"><h:link value="Welcome,Staff" outcome="index" /></li>
+            <li class="active"><h:link value="Welcome,#{loginController.user}" outcome="index" /></li>
             <li><h:outputLink value="../faces/index.xhtml">Log out</h:outputLink></li>
             <!--  <li><h:link value="Logout" outcome="index"/></li> -->
           </ul>
