@@ -2,9 +2,12 @@ package fit5042.assx.entities;
 
 import java.io.Serializable;
 
+import javax.persistence.Access;
+import javax.persistence.AccessType;
 import javax.persistence.Embeddable;
 
 @Embeddable
+@Access(AccessType.PROPERTY)
 public class Address implements Serializable
 {
     private String streetNumber;

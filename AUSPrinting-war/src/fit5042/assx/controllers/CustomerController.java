@@ -1,6 +1,7 @@
 package fit5042.assx.controllers;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.util.Set;
 
 import javax.enterprise.context.RequestScoped;
@@ -38,7 +39,7 @@ public class CustomerController implements Serializable
     private int customerContactId;
     private long customerPhoneNumber;
 	private String customerEmail;
-	private String customerDob;
+	private java.util.Date customerDob;
 	private String customerTFN;
 	
 	/**
@@ -69,17 +70,15 @@ public class CustomerController implements Serializable
 		super();
 	}
 
-	
-	
 
 
-	public CustomerController(int customerId, Staff staff, Industry industry, CustomerContactInformation contactInformation,
-			String customerFirstName, String customerLastName, Printer printer, String dateOfPurchase,
-			String streetNumber, String streetAddress, String suburb, String postcode, String state,
-			int customerContactId, long customerPhoneNumber, String customerEmail, String customerDob,
-			String customerTFN, int staffId, String staffFname, String staffLname, String staffTFN,
-			Address staffAddress, String staffEmail, long staffPhoneNumber, int printerId, String printerType,
-			int industryId, String industryType) {
+	public CustomerController(int customerId, Staff staff, Industry industry,
+			CustomerContactInformation contactInformation, String customerFirstName, String customerLastName,
+			Printer printer, String dateOfPurchase, String streetNumber, String streetAddress, String suburb,
+			String postcode, String state, int customerContactId, long customerPhoneNumber, String customerEmail,
+			java.util.Date customerDob, String customerTFN, int staffId, String staffFname, String staffLname,
+			String staffTFN, Address staffAddress, String staffEmail, long staffPhoneNumber, int printerId,
+			String printerType, int industryId, String industryType) {
 		super();
 		this.customerId = customerId;
 		this.staff = staff;
@@ -112,9 +111,20 @@ public class CustomerController implements Serializable
 		this.industryType = industryType;
 	}
 
+
+
 	
 
 
+
+
+	public java.util.Date getCustomerDob() {
+		return customerDob;
+	}
+
+	public void setCustomerDob(java.util.Date customerDob) {
+		this.customerDob = customerDob;
+	}
 
 	public Staff getStaff() {
 		return staff;
@@ -473,15 +483,6 @@ public class CustomerController implements Serializable
 	}
 
 
-	public String getCustomerDob() {
-		return customerDob;
-	}
-
-
-	public void setCustomerDob(String customerDob) {
-		this.customerDob = customerDob;
-	}
-
 
 	public String getCustomerTFN() {
 		return customerTFN;
@@ -491,9 +492,11 @@ public class CustomerController implements Serializable
 		this.customerTFN = customerTFN;
 	}
 
+
+
 	@Override
 	public String toString() {
-		return "Customer [customerId=" + customerId + ", staff=" + staff + ", industry=" + industry
+		return "CustomerController [customerId=" + customerId + ", staff=" + staff + ", industry=" + industry
 				+ ", contactInformation=" + contactInformation + ", customerFirstName=" + customerFirstName
 				+ ", customerLastName=" + customerLastName + ", printer=" + printer + ", dateOfPurchase="
 				+ dateOfPurchase + ", streetNumber=" + streetNumber + ", streetAddress=" + streetAddress + ", suburb="
@@ -505,4 +508,5 @@ public class CustomerController implements Serializable
 				+ ", printerType=" + printerType + ", industryId=" + industryId + ", industryType=" + industryType
 				+ "]";
 	}
+
 }

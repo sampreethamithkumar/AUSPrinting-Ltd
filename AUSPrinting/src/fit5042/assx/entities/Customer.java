@@ -11,10 +11,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 
 @Entity
-
+@Table(name = "CUSTOMER")
+@NamedQueries({
+    @NamedQuery(name = Customer.GET_ALL_QUERY_NAME, query = "SELECT c FROM Customer c order by c.customerId")})
 public class Customer implements Serializable
 {
 	@Id @GeneratedValue
@@ -26,6 +29,7 @@ public class Customer implements Serializable
 	private String customerLastName;
 	private Printer printer_id;
 	private String dateOfPurchase;
+	public static final String GET_ALL_QUERY_NAME = "Customer.getAll";
 	
 	public Customer() 
 	{
