@@ -1,5 +1,9 @@
 package fit5042.assx.repository;
 
+import java.math.BigInteger;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -31,6 +35,22 @@ public class StaffRepositoryImplementation implements StaffRepository {
 		int lastStaffId = staffs.get(staffs.size() - 1).getStaffId();
 		staff.setStaffId(lastStaffId + 1);
 		entityManager.persist(staff);
+		
+		User user = new User();
+		UserGroup userGroup = new UserGroup();
+		user.setUsername(staff.getStaffFname());
+		userGroup.setUserName(staff.getStaffFname());
+		userGroup.setGroupName("staff");
+		
+		try {
+			user.setUserPassword(toHexString(getSHA(staff.getStaffFname())));
+			entityManager.persist(user);
+			entityManager.persist(userGroup);
+		} catch (NoSuchAlgorithmException e) {
+
+		
+		}
+		
 	}
 
 	@Override
@@ -63,6 +83,42 @@ public class StaffRepositoryImplementation implements StaffRepository {
 		Staff staff = entityManager.find(Staff.class, staffId);
 		return staff;
 	}
+	
+	
+	/**
+	 * Reference: https://www.geeksforgeeks.org/sha-256-hash-in-java/
+	 * 
+	 * @param input
+	 * @return
+	 * @throws NoSuchAlgorithmException
+	 */
+	public static byte[] getSHA(String input) throws NoSuchAlgorithmException 
+    {  
+        // Static getInstance method is called with hashing SHA  
+        MessageDigest md = MessageDigest.getInstance("SHA-256");  
+  
+        // digest() method called  
+        // to calculate message digest of an input  
+        // and return array of byte 
+        return md.digest(input.getBytes(StandardCharsets.UTF_8));  
+    } 
+    
+    public static String toHexString(byte[] hash) 
+    { 
+        // Convert byte array into signum representation  
+        BigInteger number = new BigInteger(1, hash);  
+  
+        // Convert message digest into hex value  
+        StringBuilder hexString = new StringBuilder(number.toString(16));  
+  
+        // Pad with leading zeros 
+        while (hexString.length() < 32)  
+        {  
+            hexString.insert(0, '0');  
+        }  
+  
+        return hexString.toString();  
+    }
 	
 
 }

@@ -13,17 +13,17 @@ import javax.persistence.Table;
 public class User implements Serializable{
 	
 	private long id;
-	private String userName;
+	private String username;
 	private String userPassword;
 	
 	public User() {
 		
 	}
 
-	public User(long id, String userName, String userPassword) {
+	public User(long id, String username, String userPassword) {
 		super();
 		this.id = id;
-		this.userName = userName;
+		this.username = username;
 		this.userPassword = userPassword;
 	}
 
@@ -39,12 +39,12 @@ public class User implements Serializable{
 	}
 
 	@Column(name="username")
-	public String getUserName() {
-		return userName;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 	
 	@Column(name="password")
@@ -58,6 +58,6 @@ public class User implements Serializable{
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", userName=" + userName + ", userPassword=" + userPassword + "]";
+		return "User [id=" + id + ", username=" + username + ", userPassword=" + userPassword + "]";
 	}
 }
