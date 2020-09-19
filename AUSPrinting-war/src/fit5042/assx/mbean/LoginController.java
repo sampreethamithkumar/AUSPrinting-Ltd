@@ -23,7 +23,7 @@ import fit5042.assx.repository.UserService;
  * Reference https://stackoverflow.com/questions/3841361/jsf-http-session-login
  */
 @ManagedBean
-@RequestScoped
+@SessionScoped
 public class LoginController implements Serializable{
 
 	private User user;

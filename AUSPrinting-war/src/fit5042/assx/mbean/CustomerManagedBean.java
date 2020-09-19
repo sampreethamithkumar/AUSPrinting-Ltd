@@ -9,6 +9,7 @@ import java.util.logging.Logger;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
@@ -24,7 +25,7 @@ import fit5042.assx.entities.Staff;
 import fit5042.assx.repository.CustomerRepository;
 
 @ManagedBean(name = "customerManagedBean")
-@ApplicationScoped
+@SessionScoped
 public class CustomerManagedBean implements Serializable
 {
 	@EJB
