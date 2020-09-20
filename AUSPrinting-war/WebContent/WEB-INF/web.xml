@@ -35,7 +35,18 @@
 			<role-name>admin</role-name>
 		</auth-constraint>
 	</security-constraint>
-	
+	<security-constraint>
+		<display-name>StaffConstraint</display-name>
+		<web-resource-collection>
+			<web-resource-name>WebResource</web-resource-name>
+			<url-pattern>/staff/*</url-pattern>
+			<url-pattern>/faces/staff/*</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<description>StaffMembers</description>
+			<role-name>staff</role-name>
+		</auth-constraint>
+	</security-constraint>
 	<login-config>
 		<auth-method>FORM</auth-method>
 		<realm-name>JDBC_AUS_Security</realm-name>
@@ -48,5 +59,8 @@
 		<description>Administrator</description>
 		<role-name>admin</role-name>
 	</security-role>
-
+	<security-role>
+		<description>StaffMembers</description>
+		<role-name>staff</role-name>
+	</security-role>
 </web-app>

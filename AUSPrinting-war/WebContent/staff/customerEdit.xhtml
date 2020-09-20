@@ -35,8 +35,10 @@
             <li role="presentation" class="active" ><h:link value="Customer" outcome="customer"/></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li class="active"><h:link value="Welcome,Staff" outcome="index" /></li>
-            <li><h:outputLink value="#{loginController.logout()}">Log out</h:outputLink></li>
+             <li class="active"><h:link value="Welcome,#{loginController.user.username}" outcome="index" /></li>
+            <li>
+            	<h:outputLink value="../faces/index.xhtml">Logout</h:outputLink>
+            </li>
           </ul>
         </div>
       </div>
@@ -231,13 +233,12 @@
               <h:message for="state" class="label label-danger"/>
           	</div>
           	<div class="form-group">
-              <label>Postcode</label>
-              <h:inputText value="#{customer.postcode}" class="form-control" pt:placeholder="Postcode" id="postcode"
-              required="true" requiredMessage="Please enter the postcode" validatorMessage="Please enter a post code between 1 and 100000" converterMessage="Please enter a number">
-              <f:convertNumber intergerOnly="true"/>
-              <f:validateLongRange minimum="1" maximum="100000" />
+              <label>Phone Number</label>
+              <h:inputText value="#{customer.customerPhoneNumber}" class="form-control" pt:placeholder="Phone Number" id="phoneNumber"
+              required="true" requiredMessage="Please enter the phone number" converterMessage="Please enter a number">
+              	<f:convertNumber intergerOnly="true"/>
               </h:inputText>
-              <h:message for="postcode" class="label label-danger"/>
+              <h:message for="phoneNumber" class="label label-danger"/>
           	</div>
      		<div class="form-group">
               <label>Email Id</label>

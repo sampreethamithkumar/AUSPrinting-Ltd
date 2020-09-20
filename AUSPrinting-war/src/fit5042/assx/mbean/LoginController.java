@@ -42,9 +42,9 @@ public class LoginController implements Serializable{
         return user;
     }
 
-    public String logout() {
-        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-        return "../../";
-    }
+//    public String logout() {
+//        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+//        return "../../";
+//    }
 
 }
