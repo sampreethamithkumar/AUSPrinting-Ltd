@@ -45,11 +45,12 @@
 						value="Customer" outcome="customer" /></li>
 				<li role="presentation"><h:link value="Staff" outcome="staff" /></li>
 			</ul>
-			<ul class="nav navbar-nav navbar-right">
-				<li class="active"><h:link value="Welcome,Admin"
-						outcome="index" /></li>
-				<li><h:outputLink value="../faces/index.xhtml">Log out</h:outputLink></li>
-			</ul>
+			<h:form>
+          <ul class="nav navbar-nav navbar-right">
+            <li class="active"><h:link value="Welcome,#{loginController.user.username}" outcome="index" /></li>
+            <li><h:commandButton style="margin:10px" class="btn btn-secondary" value = "logout" action="#{loginController.logout()}"/></li>
+          </ul>
+          </h:form>
 		</div>
 	</div>
 	</nav>

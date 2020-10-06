@@ -1,5 +1,9 @@
 package fit5042.assx.repository;
 
+import java.math.BigInteger;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -31,6 +35,8 @@ public class StaffRepositoryImplementation implements StaffRepository {
 		int lastStaffId = staffs.get(staffs.size() - 1).getStaffId();
 		staff.setStaffId(lastStaffId + 1);
 		entityManager.persist(staff);
+		
+
 	}
 
 	@Override
@@ -64,5 +70,4 @@ public class StaffRepositoryImplementation implements StaffRepository {
 		return staff;
 	}
 	
-
 }

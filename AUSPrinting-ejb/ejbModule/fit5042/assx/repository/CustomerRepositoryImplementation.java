@@ -86,6 +86,8 @@ public class CustomerRepositoryImplementation implements  CustomerRepository
 		CriteriaBuilder builder = entityManager.getCriteriaBuilder();
     	CriteriaQuery<Customer> criteriaQuery = builder.createQuery(Customer.class);
     	Root<Customer> c = criteriaQuery.from(Customer.class);
+    	//One line missing
+//    	CriteriaQuery<Customer> all = criteraiQuery.select(rootEntry);
     	criteriaQuery.select(c).where(builder.equal(c.get("customerfirstname"),customerFirstName));
     	List<Customer> result = entityManager.createQuery(criteriaQuery).getResultList();
         return result;

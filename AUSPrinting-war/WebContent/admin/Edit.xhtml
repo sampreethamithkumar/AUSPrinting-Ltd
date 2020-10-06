@@ -36,8 +36,12 @@
             <li role="presentation"><h:link value="Staff" outcome="staff"/></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li class="active"><h:link value="Welcome,Admin" outcome="index" /></li>
-            <li><h:outputLink value="../faces/index.xhtml">Log out</h:outputLink></li>
+  <h:form>
+            <li class="active"><h:link value="Welcome,#{loginController.user.username}" outcome="index" /></li>
+            <li>
+            	<h:commandButton value = "logout" action="#{loginController.logout()}"/>
+            </li>
+           </h:form>
           </ul>
         </div>
       </div>
