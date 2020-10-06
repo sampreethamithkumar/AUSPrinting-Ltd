@@ -166,7 +166,7 @@ public class CustomerManagedBean implements Serializable
 		return customerRepository.getCustomersName(firstName);
 	}
 	
-	
+
 	public void footerRender() {
 		
 		setRenderText("Customer Added Successfully!!");
