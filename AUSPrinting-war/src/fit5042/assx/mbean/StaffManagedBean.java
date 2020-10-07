@@ -1,5 +1,6 @@
 package fit5042.assx.mbean;
 
+import java.security.MessageDigest;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -69,12 +70,34 @@ public class StaffManagedBean {
 		String staffTFN = staffController.getStaffTFN();
 		String staffEmail = staffController.getStaffEmail();
 		long staffPhoneNumber = staffController.getStaffPhoneNumber();
-		Staff staff = new Staff(staffId, staffFname, staffLname, staffTFN, staffAddress, staffEmail, staffPhoneNumber);
+		String staffPassword = sha256(staffController.getPassword());
+		Staff staff = new Staff(staffId, staffFname, staffLname, staffTFN, staffAddress, staffEmail, staffPhoneNumber,staffPassword);
 			
 		return staff;
 	}
 	
-	
+	/**
+	 * reference: https://stackoverflow.com/questions/5531455/how-to-hash-some-string-with-sha256-in-java
+	 * @param base
+	 * @return String
+	 */
+    public  String sha256(String base) {
+        try{
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            byte[] hash = digest.digest(base.getBytes("UTF-8"));
+            StringBuffer hexString = new StringBuffer();
+
+            for (int i = 0; i < hash.length; i++) {
+                String hex = Integer.toHexString(0xff & hash[i]);
+                if(hex.length() == 1) hexString.append('0');
+                hexString.append(hex);
+            }
+
+            return hexString.toString();
+        } catch(Exception ex){
+            throw new RuntimeException(ex);
+        }
+    }
 	
 	public StaffRepository getStaffRepository() {
 		return staffRepository;

@@ -27,15 +27,18 @@ public class Staff implements Serializable
 	private String staffEmail;
 	private long staffPhoneNumber;
 	private List<Customer> customer;
+	private String password;
 	
+
+
 	public Staff() 
 	{
 		super();
 	}
 
+
 	public Staff(int staffId, String staffFname, String staffLname, String staffTFN, Address staffAddress,
-			String staffEmail, long staffPhoneNumber) 
-	{
+			String staffEmail, long staffPhoneNumber) {
 		super();
 		this.staffId = staffId;
 		this.staffFname = staffFname;
@@ -44,6 +47,20 @@ public class Staff implements Serializable
 		this.staffAddress = staffAddress;
 		this.staffEmail = staffEmail;
 		this.staffPhoneNumber = staffPhoneNumber;
+	}
+
+
+	public Staff(int staffId, String staffFname, String staffLname, String staffTFN, Address staffAddress,
+			String staffEmail, long staffPhoneNumber, String password) {
+		super();
+		this.staffId = staffId;
+		this.staffFname = staffFname;
+		this.staffLname = staffLname;
+		this.staffTFN = staffTFN;
+		this.staffAddress = staffAddress;
+		this.staffEmail = staffEmail;
+		this.staffPhoneNumber = staffPhoneNumber;
+		this.password = password;
 	}
 
 	public int getStaffId() 
@@ -128,6 +145,14 @@ public class Staff implements Serializable
 		this.customer = customer;
 	}
 
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
 	@Override
 	public String toString() 
 	{

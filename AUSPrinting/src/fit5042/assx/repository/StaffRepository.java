@@ -5,6 +5,8 @@ import java.util.List;
 import javax.ejb.Remote;
 
 import fit5042.assx.entities.Staff;
+import fit5042.assx.entities.User;
+import fit5042.assx.entities.UserGroup;
 
 @Remote
 public interface StaffRepository {
@@ -20,5 +22,9 @@ public interface StaffRepository {
 	public void removeStaff(int staffId);
 
 	public Staff searchStaffById(int staffId);
+
+	List<UserGroup> getUserGroup();
+
+	List<User> getUser();
 	
 }

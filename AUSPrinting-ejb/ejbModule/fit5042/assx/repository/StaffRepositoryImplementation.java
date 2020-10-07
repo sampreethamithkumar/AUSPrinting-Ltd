@@ -34,9 +34,20 @@ public class StaffRepositoryImplementation implements StaffRepository {
 		List<Staff> staffs = getStaff();
 		int lastStaffId = staffs.get(staffs.size() - 1).getStaffId();
 		staff.setStaffId(lastStaffId + 1);
-		entityManager.persist(staff);
 		
-
+		List<User> users = getUser();
+		long lastUserId = users.get(users.size() - 1).getId();
+		String userFirstName = staff.getStaffFname();
+		String userPassword = staff.getPassword();
+		User user = new User(lastUserId, userFirstName, userPassword);
+		
+		List<UserGroup> userGroups = getUserGroup();
+		long lastUserGroupId = userGroups.get(userGroups.size() - 1).getId();
+		String userName = staff.getStaffFname();
+		UserGroup userGroup = new UserGroup(lastUserGroupId, userName, "staff");
+		entityManager.persist(staff);
+		entityManager.persist(userGroup);
+		entityManager.persist(user);
 	}
 
 	@Override
@@ -68,6 +79,28 @@ public class StaffRepositoryImplementation implements StaffRepository {
 	public Staff searchStaffById(int staffId) {
 		Staff staff = entityManager.find(Staff.class, staffId);
 		return staff;
+	}
+	
+	@Override
+	public List<User> getUser() {
+		CriteriaBuilder criteriaBuilder= entityManager.getCriteriaBuilder();
+		CriteriaQuery<User> criteraiQuery = criteriaBuilder.createQuery(User.class);
+		Root<User> rootEntry = criteraiQuery.from(User.class);
+		CriteriaQuery<User> all = criteraiQuery.select(rootEntry);
+		
+		TypedQuery<User> allQuery = entityManager.createQuery(all);
+		return allQuery.getResultList();
+	}
+	
+	@Override
+	public List<UserGroup> getUserGroup(){
+		CriteriaBuilder criteriaBuilder= entityManager.getCriteriaBuilder();
+		CriteriaQuery<UserGroup> criteraiQuery = criteriaBuilder.createQuery(UserGroup.class);
+		Root<UserGroup> rootEntry = criteraiQuery.from(UserGroup.class);
+		CriteriaQuery<UserGroup> all = criteraiQuery.select(rootEntry);
+		
+		TypedQuery<UserGroup> allQuery = entityManager.createQuery(all);
+		return allQuery.getResultList();
 	}
 	
 }

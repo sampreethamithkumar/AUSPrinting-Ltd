@@ -19,6 +19,7 @@ public class StaffController {
 	private String staffEmail;
 	private long staffPhoneNumber;
 	private List<Customer> customer;
+	private String password;
 	
 	private String streetNumber;
     private String streetAddress;
@@ -31,7 +32,7 @@ public class StaffController {
 	}
 
 	public StaffController(int staffId, String staffFname, String staffLname, String staffTFN, Address staffAddress,
-			String staffEmail, long staffPhoneNumber, List<Customer> customer, String streetNumber,
+			String staffEmail, long staffPhoneNumber, List<Customer> customer, String password, String streetNumber,
 			String streetAddress, String suburb, String postcode, String state) {
 		super();
 		this.staffId = staffId;
@@ -42,6 +43,7 @@ public class StaffController {
 		this.staffEmail = staffEmail;
 		this.staffPhoneNumber = staffPhoneNumber;
 		this.customer = customer;
+		this.password = password;
 		this.streetNumber = streetNumber;
 		this.streetAddress = streetAddress;
 		this.suburb = suburb;
@@ -153,6 +155,14 @@ public class StaffController {
 		this.state = state;
 	}
 
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
 	@Override
 	public String toString() {
 		return "StaffController [staffId=" + staffId + ", staffFname=" + staffFname + ", staffLname=" + staffLname
