@@ -243,7 +243,7 @@
               <label>Date Of Birth</label>
               <h:inputText value="#{customer.customerDob}" class="form-control" pt:placeholder="Date Of Birth" id="dob"
               required="true" requiredMessage="Please enter the Date of Birth">
-             <f:convertDateTime pattern = "dd-MM-yyyy" />
+             <f:convertDateTime pattern = "dd-MM-YYYY" />
               </h:inputText>
               <h:message for="dob" class="label label-danger"/>
           	</div>
@@ -275,7 +275,7 @@
               <label>Date Of Purchase</label>
               <h:inputText value="#{customer.dateOfPurchase}" class="form-control" pt:placeholder="Date Of Purchase" id="dop"
               required="true" requiredMessage="Please enter Date of Purchase"> 
-              <f:convertDateTime pattern = "dd-MM-yyyy" />
+              <f:convertDateTime pattern = "dd-MM-YYYY" />
               </h:inputText>
               <h:message for="dop" class="label label-danger"/>
           	</div>

@@ -38,7 +38,6 @@ public class Customer implements Serializable
 	}
 	
 	
-
 	public Customer(int customerId, Staff staffId, Industry industryId, CustomerContactInformation contactInformation,
 			String customerFirstName, String customerLastName, Printer printer_id, Date dateOfPurchase) {
 		super();

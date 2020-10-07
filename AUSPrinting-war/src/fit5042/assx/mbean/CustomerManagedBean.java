@@ -156,7 +156,8 @@ public class CustomerManagedBean implements Serializable
 		customer.setCustomerId(customerController.getCustomerId());
 		customer.setCustomerFirstName(customerController.getCustomerFirstName());
 		customer.setCustomerLastName(customerController.getCustomerLastName());
-		
+
+
 		customer.setDateOfPurchase(new java.sql.Date(customerController.getDateOfPurchase().getTime()));
 		
 		return customer;	
