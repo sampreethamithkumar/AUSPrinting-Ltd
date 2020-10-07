@@ -22,7 +22,6 @@ public class UserServiceImplementation implements UserService {
 	@Override
 	public User find(String username) {
 		
-		
 		CriteriaBuilder criteriaBuilder= entityManager.getCriteriaBuilder();
 		CriteriaQuery<User> criteraiQuery = criteriaBuilder.createQuery(User.class);
 		Root<User> rootEntry = criteraiQuery.from(User.class);
