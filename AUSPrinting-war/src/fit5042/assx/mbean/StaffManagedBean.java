@@ -1,23 +1,37 @@
 package fit5042.assx.mbean;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.ejb.EJB;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 
 import fit5042.assx.controllers.StaffController;
 import fit5042.assx.entities.Address;
 import fit5042.assx.entities.Staff;
+import fit5042.assx.entities.UserGroup;
+import fit5042.assx.entities.Users;
 import fit5042.assx.repository.PrinterRepository;
 import fit5042.assx.repository.StaffRepository;
+import fit5042.assx.repository.UserGroupRepository;
+import fit5042.assx.repository.UserRepository;
 
 @ManagedBean(name= "staffManagedBean")
-public class StaffManagedBean {
+@SessionScoped
+public class StaffManagedBean implements Serializable{
 
 	@EJB
 	StaffRepository staffRepository;
+	
+	@ManagedProperty(value = "#{userManagedBean}")
+	UserManagedBean userManagedBean;
+	
+	@ManagedProperty(value = "#{userGroupManagedBean}")
+	UserGroupManagedBean userGroupManagedBean;
 	
 	private boolean showRender =false;
 	
@@ -32,6 +46,20 @@ public class StaffManagedBean {
 		return staffRepository.getStaffId();
 	}
 	
+	public void addStaff(StaffController staffController) {
+		Staff staff = convertStaffToEntity(staffController);
+		
+		try {
+			staffRepository.addStaff(staff);
+			userManagedBean.addUser(staffController);
+			userGroupManagedBean.addUserGroup(staffController);
+			footerRender();
+		}
+		catch(Exception e) {
+			
+		}
+	}
+	
 	public List<Staff> getStaffs()
 	{
 		try {
@@ -44,17 +72,6 @@ public class StaffManagedBean {
 		return null;
 	}
 	
-	public void addStaff(StaffController staffController) {
-		Staff staff = convertStaffToEntity(staffController);
-		
-		try {
-			staffRepository.addStaff(staff);
-			footerRender();
-		}
-		catch(Exception e) {
-			
-		}
-	}
 	
 	public Staff convertStaffToEntity(StaffController staffController) {
 		String streetNumber = staffController.getStreetNumber();
@@ -118,4 +135,22 @@ public class StaffManagedBean {
 	{
 		return staffRepository.searchStaffById(staffId);
 	}
+	
+	public UserManagedBean getUserManagedBean() {
+		return userManagedBean;
+	}
+
+	public void setUserManagedBean(UserManagedBean userManagedBean) {
+		this.userManagedBean = userManagedBean;
+	}
+
+	public UserGroupManagedBean getUserGroupManagedBean() {
+		return userGroupManagedBean;
+	}
+
+	public void setUserGroupManagedBean(UserGroupManagedBean userGroupManagedBean) {
+		this.userGroupManagedBean = userGroupManagedBean;
+	}
+	
+	
 }

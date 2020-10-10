@@ -8,7 +8,7 @@
 	<class>fit5042.assx.entities.Staff</class>
 	<class>fit5042.assx.entities.Industry</class>
 	<class>fit5042.assx.entities.Printer</class>
-	<class>fit5042.assx.entities.User</class>
+	<class>fit5042.assx.entities.Users</class>
 	<class>fit5042.assx.entities.UserGroup</class>
 	<exclude-unlisted-classes>true</exclude-unlisted-classes>
 	<properties>

@@ -18,7 +18,7 @@ import javax.security.auth.callback.CallbackHandler;
 import javax.security.auth.login.LoginException;
 import javax.security.auth.spi.LoginModule;
 import javax.security.enterprise.authentication.mechanism.http.RememberMe;
-import fit5042.assx.entities.User;
+import fit5042.assx.entities.Users;
 import fit5042.assx.repository.UserService;
 
 
@@ -31,7 +31,7 @@ import fit5042.assx.repository.UserService;
 @RequestScoped
 public class LoginController implements Serializable{
 
-	private User user;
+	private Users user;
 	private Subject subject;
 	private Principal principal;
 	
@@ -39,7 +39,7 @@ public class LoginController implements Serializable{
     @EJB
     private UserService userService;
 
-    public User getUser() {
+    public Users getUser() {
     	if (user == null) {
             principal = FacesContext.getCurrentInstance().getExternalContext().getUserPrincipal();
             if (principal != null) {

@@ -10,17 +10,17 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "Users")
-public class User implements Serializable{
+public class Users implements Serializable{
 	
 	private long id;
 	private String username;
 	private String userPassword;
 	
-	public User() {
+	public Users() {
 		
 	}
 
-	public User(long id, String username, String userPassword) {
+	public Users(long id, String username, String userPassword) {
 		super();
 		this.id = id;
 		this.username = username;

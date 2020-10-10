@@ -10,7 +10,7 @@ import javax.persistence.criteria.Root;
 import javax.security.auth.spi.LoginModule;
 
 import fit5042.assx.entities.Customer;
-import fit5042.assx.entities.User;
+import fit5042.assx.entities.Users;
 
 @Stateless
 public class UserServiceImplementation implements UserService {
@@ -20,14 +20,14 @@ public class UserServiceImplementation implements UserService {
 	
 	
 	@Override
-	public User find(String username) {
+	public Users find(String username) {
 		
 		CriteriaBuilder criteriaBuilder= entityManager.getCriteriaBuilder();
-		CriteriaQuery<User> criteraiQuery = criteriaBuilder.createQuery(User.class);
-		Root<User> rootEntry = criteraiQuery.from(User.class);
+		CriteriaQuery<Users> criteraiQuery = criteriaBuilder.createQuery(Users.class);
+		Root<Users> rootEntry = criteraiQuery.from(Users.class);
 		criteraiQuery.select(rootEntry).where(criteriaBuilder.equal(rootEntry.get("username"), username));
 		
-		TypedQuery<User> allQuery = entityManager.createQuery(criteraiQuery);
+		TypedQuery<Users> allQuery = entityManager.createQuery(criteraiQuery);
 		return allQuery.getSingleResult();
 		
 	}
