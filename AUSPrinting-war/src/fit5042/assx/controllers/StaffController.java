@@ -19,6 +19,7 @@ public class StaffController {
 	private String staffEmail;
 	private long staffPhoneNumber;
 	private List<Customer> customer;
+	private String staffPassword;
 	
 	private String streetNumber;
     private String streetAddress;
@@ -47,6 +48,14 @@ public class StaffController {
 		this.suburb = suburb;
 		this.postcode = postcode;
 		this.state = state;
+	}
+
+	public String getStaffPassword() {
+		return staffPassword;
+	}
+
+	public void setStaffPassword(String staffPassword) {
+		this.staffPassword = staffPassword;
 	}
 
 	public int getStaffId() {

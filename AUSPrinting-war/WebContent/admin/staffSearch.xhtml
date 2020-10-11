@@ -190,6 +190,15 @@
 							<h:message for="lastName" class="label label-danger" />
 						</div>
 						<div class="form-group">
+							<label>Password</label>
+							<h:inputSecret value="#{staffController.staffPassword}"
+								class="form-control" pt:placeholder="Password" id="password"
+								title="password" required="true"
+								requiredMesage="Please enter the password" />
+
+							<h:message for="password" class="label label-danger" />
+						</div>
+						<div class="form-group">
 							<label>Street Number</label>
 							<h:inputText value="#{staffController.streetNumber}"
 								class="form-control" pt:placeholder="Street Number"

@@ -27,6 +27,7 @@ public class Staff implements Serializable
 	private String staffEmail;
 	private long staffPhoneNumber;
 	private List<Customer> customer;
+
 	
 	public Staff() 
 	{
@@ -45,6 +46,7 @@ public class Staff implements Serializable
 		this.staffEmail = staffEmail;
 		this.staffPhoneNumber = staffPhoneNumber;
 	}
+	
 
 	public int getStaffId() 
 	{

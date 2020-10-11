@@ -9,6 +9,7 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -58,7 +59,8 @@ public class StaffRepositoryImplementation implements StaffRepository {
 	@Override
 	public void removeStaff(int staffId) {
 		Staff staff = entityManager.find(Staff.class, staffId);
-		
+		removeStaffLoginFromUser(staff.getStaffFname());
+		removeStaffLoginFromUserGroup(staff.getStaffFname());
 		if(staff != null)
 			entityManager.remove(staff);
 		
@@ -68,6 +70,18 @@ public class StaffRepositoryImplementation implements StaffRepository {
 	public Staff searchStaffById(int staffId) {
 		Staff staff = entityManager.find(Staff.class, staffId);
 		return staff;
+	}
+	
+	private void removeStaffLoginFromUser(String staffName) {
+		Query query = entityManager.createQuery("DELETE FROM Users u WHERE u.username = :staffName");
+		query.setParameter("staffName", staffName);
+		query.executeUpdate();
+	}
+	
+	private void removeStaffLoginFromUserGroup(String staffName) {
+		Query query = entityManager.createQuery("DELETE FROM UserGroup g WHERE g.userName = :staffName");
+		query.setParameter("staffName", staffName);
+		query.executeUpdate();
 	}
 	
 }

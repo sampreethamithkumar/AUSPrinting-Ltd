@@ -34,7 +34,7 @@ public class UserManagedBean implements Serializable
 	private Users convertUserToEntity(StaffController staff) {
 		Long userId = (long) staff.getStaffId();
 		String userName = staff.getStaffFname();
-		String userPassword = staff.getStaffFname();
+		String userPassword = staff.getStaffPassword();
 		
 		return new Users(userId, userName, userPassword);
 		

@@ -3,7 +3,8 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
 	<link
@@ -187,6 +188,15 @@
 								requiredMesage="Please enter the last name" />
 
 							<h:message for="lastName" class="label label-danger" />
+						</div>
+						<div class="form-group">
+							<label>Password</label>
+							<h:inputSecret value="#{staffController.staffPassword}"
+								class="form-control" pt:placeholder="Password" id="password"
+								title="password" required="true"
+								requiredMesage="Please enter the Password" />
+
+							<h:message for="password" class="label label-danger" />
 						</div>
 						<div class="form-group">
 							<label>Street Number</label>
