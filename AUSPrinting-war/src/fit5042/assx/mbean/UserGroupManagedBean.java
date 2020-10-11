@@ -19,7 +19,8 @@ public class UserGroupManagedBean implements Serializable{
 	
 	public void addUserGroup(StaffController staff) {
 		UserGroup userGroup = convertUserGroupToEntity(staff);
-		
+
+//		userGroupRepository.addUser(userGroup);
 		try {
 			userGroupRepository.addUser(userGroup);
 		}

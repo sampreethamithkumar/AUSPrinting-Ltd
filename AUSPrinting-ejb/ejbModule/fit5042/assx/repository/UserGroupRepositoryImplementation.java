@@ -23,8 +23,8 @@ public class UserGroupRepositoryImplementation implements UserGroupRepository{
 	public void addUser(UserGroup userGroup) {
 		List<UserGroup> userGroups = getUserGroups();
 		long lastUserId = userGroups.get(userGroups.size() - 1).getId();
-		userGroup.setId((lastUserId + 1));
-		entityManager.persist(userGroups);
+		userGroup.setId(lastUserId + 1);
+		entityManager.persist(userGroup);
 	}
 	
 	public List<UserGroup> getUserGroups() {

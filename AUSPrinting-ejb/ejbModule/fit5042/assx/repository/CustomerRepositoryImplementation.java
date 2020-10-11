@@ -1,5 +1,6 @@
 package fit5042.assx.repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -82,6 +83,8 @@ public class CustomerRepositoryImplementation implements  CustomerRepository
 	
 	@Override
 	public List<Customer> getCustomersName(String customerFirstName) {
+		List<Customer> results = new ArrayList<>();
+		results.add(entityManager.find(Customer.class, 1));
 		
 		CriteriaBuilder builder = entityManager.getCriteriaBuilder();
     	CriteriaQuery<Customer> criteriaQuery = builder.createQuery(Customer.class);
@@ -90,6 +93,6 @@ public class CustomerRepositoryImplementation implements  CustomerRepository
 //    	CriteriaQuery<Customer> all = criteraiQuery.select(rootEntry);
     	criteriaQuery.select(c).where(builder.equal(c.get("customerfirstname"),customerFirstName));
     	List<Customer> result = entityManager.createQuery(criteriaQuery).getResultList();
-        return result;
+        return results;
 	}
 }
