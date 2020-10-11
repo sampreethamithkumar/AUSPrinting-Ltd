@@ -8,4 +8,6 @@ import fit5042.assx.entities.Users;
 public interface UserRepository {
 
 	void addUser(Users user);
+	
+	void editUser(Users user);
 }

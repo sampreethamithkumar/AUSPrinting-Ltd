@@ -57,5 +57,15 @@ public class UserRepositoryImplementation implements UserRepository{
 		TypedQuery<Users> allQuery = entityManager.createQuery(all);
 		return allQuery.getResultList();
     }
+    
 
+
+	@Override
+	public void editUser(Users user) {
+		Users userFoundFromDb = entityManager.find(Users.class, user.getId());
+		if (!userFoundFromDb.getUserPassword().equals(user.getUserPassword())) {
+			user.setUserPassword(sha256(user.getUserPassword()));
+			entityManager.merge(user);
+		}
+	}
 }

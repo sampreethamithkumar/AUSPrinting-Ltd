@@ -5,6 +5,7 @@ import java.io.Serializable;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 
 import fit5042.assx.controllers.StaffController;
 import fit5042.assx.entities.Staff;
@@ -19,6 +20,14 @@ public class UserManagedBean implements Serializable
 	@EJB
 	UserRepository userRepository;
 	
+	@ManagedProperty(value = "#{loginController}")
+	LoginController loginController;
+	
+	private String passwordSavedRenderText;
+	
+	private boolean showRender = false;
+	
+	private String passwordNotChangedRenderText;
 	
 	public void addUser(StaffController staff) {
 		Users user = convertUserToEntity(staff);
@@ -38,5 +47,57 @@ public class UserManagedBean implements Serializable
 		
 		return new Users(userId, userName, userPassword);
 		
+	}
+	
+	public void editUser(Users user) {
+		if (user.getUserPassword().equals(loginController.getUser().getUserPassword())) {
+			setPasswordSavedRenderText("");
+			RenderNotSavedText();			
+		}
+		else {
+			userRepository.editUser(user);
+			setPasswordNotChangedRenderText("");
+			RenderSaveText();
+		}
+	}
+	
+	private void RenderNotSavedText() {
+		setPasswordNotChangedRenderText("Password has not been changed, please enter a new password to change.");
+	}
+	
+	private void RenderSaveText() {
+		setPasswordSavedRenderText("Password changed!!");
+	}
+
+	public String getPasswordSavedRenderText() {
+		return passwordSavedRenderText;
+	}
+
+	public void setPasswordSavedRenderText(String passwordSavedRenderText) {
+		this.passwordSavedRenderText = passwordSavedRenderText;
+	}
+
+	public boolean isShowRender() {
+		return showRender;
+	}
+
+	public void setShowRender(boolean showRender) {
+		this.showRender = showRender;
+	}
+
+	public String getPasswordNotChangedRenderText() {
+		return passwordNotChangedRenderText;
+	}
+
+	public void setPasswordNotChangedRenderText(String passwordNotChangedRenderText) {
+		this.passwordNotChangedRenderText = passwordNotChangedRenderText;
+	}
+
+	public LoginController getLoginController() {
+		return loginController;
+	}
+
+	public void setLoginController(LoginController loginController) {
+		this.loginController = loginController;
 	}
 }

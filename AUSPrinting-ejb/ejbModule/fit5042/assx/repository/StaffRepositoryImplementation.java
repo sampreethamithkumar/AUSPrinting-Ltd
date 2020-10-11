@@ -63,7 +63,6 @@ public class StaffRepositoryImplementation implements StaffRepository {
 		removeStaffLoginFromUserGroup(staff.getStaffFname());
 		if(staff != null)
 			entityManager.remove(staff);
-		
 	}
 	
 	@Override

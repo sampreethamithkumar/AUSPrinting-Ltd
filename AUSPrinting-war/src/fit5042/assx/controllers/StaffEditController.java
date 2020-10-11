@@ -55,6 +55,4 @@ public class StaffEditController
 	public void setStaff(Staff staff) {
 		this.staff = staff;
 	}
-	
-	
 }
