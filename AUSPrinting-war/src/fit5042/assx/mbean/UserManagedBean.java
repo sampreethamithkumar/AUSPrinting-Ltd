@@ -27,7 +27,6 @@ public class UserManagedBean implements Serializable
 	
 	private boolean showRender = false;
 	
-	private String passwordNotChangedRenderText;
 	
 	public void addUser(StaffController staff) {
 		Users user = convertUserToEntity(staff);
@@ -50,20 +49,10 @@ public class UserManagedBean implements Serializable
 	}
 	
 	public void editUser(Users user) {
-		if (user.getUserPassword().equals(loginController.getUser().getUserPassword())) {
-			setPasswordSavedRenderText("");
-			RenderNotSavedText();			
-		}
-		else {
-			userRepository.editUser(user);
-			setPasswordNotChangedRenderText("");
-			RenderSaveText();
-		}
+		userRepository.editUser(user);
+		RenderSaveText();
 	}
 	
-	private void RenderNotSavedText() {
-		setPasswordNotChangedRenderText("Password has not been changed, please enter a new password to change.");
-	}
 	
 	private void RenderSaveText() {
 		setPasswordSavedRenderText("Password changed!!");
@@ -85,13 +74,6 @@ public class UserManagedBean implements Serializable
 		this.showRender = showRender;
 	}
 
-	public String getPasswordNotChangedRenderText() {
-		return passwordNotChangedRenderText;
-	}
-
-	public void setPasswordNotChangedRenderText(String passwordNotChangedRenderText) {
-		this.passwordNotChangedRenderText = passwordNotChangedRenderText;
-	}
 
 	public LoginController getLoginController() {
 		return loginController;
