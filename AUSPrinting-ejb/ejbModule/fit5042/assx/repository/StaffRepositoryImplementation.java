@@ -82,5 +82,22 @@ public class StaffRepositoryImplementation implements StaffRepository {
 		query.setParameter("staffName", staffName);
 		query.executeUpdate();
 	}
+
+	@Override
+	public List<Staff> getStaffIdByFname(String staffName) {
+		String queryString = "SELECT s.staffId FROM Staff s WHERE s.staffFname = :staffName";
+		TypedQuery<Staff> query = entityManager.createQuery(queryString,Staff.class);
+		query.setParameter("staffName", staffName);
+		return query.getResultList();
+	}
+
+	@Override
+	public List<Staff> getStaffName(String staffName) {
+		String queryString = "SELECT s.staffFname FROM Staff s";
+		TypedQuery<Staff> query = entityManager.createQuery(queryString,Staff.class);
+		return query.getResultList();
+		
+	}
+	
 	
 }

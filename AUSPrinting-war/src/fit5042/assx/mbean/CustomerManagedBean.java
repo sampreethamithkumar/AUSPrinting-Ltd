@@ -11,6 +11,7 @@ import javax.ejb.EJB;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
@@ -30,6 +31,9 @@ public class CustomerManagedBean implements Serializable
 {
 	@EJB
 	CustomerRepository customerRepository;
+	
+	@ManagedProperty(value = "#{staffManagedBean}")
+	StaffManagedBean staffManagedBean;
 	
 	private boolean showRender = false;
 	
@@ -136,6 +140,7 @@ public class CustomerManagedBean implements Serializable
 	{
 		Customer customer = new Customer();
 		customer.setContactInformation(convertContactInformationToEntity(customerController));
+		//int staffId = getStaffIdByStaffName(customerController.getStaffFname());
         int staffId = customerController.getStaffId();
 		String staffFname = customerController.getStaffFname();
 		String staffLname = customerController.getStaffLname();
@@ -171,5 +176,17 @@ public class CustomerManagedBean implements Serializable
 	public void footerRender() {
 		
 		setRenderText("Customer Added Successfully!!");
+	}
+	
+	public int getStaffIdByStaffName(String staffname) {
+		return staffManagedBean.getStaffIdByFname(staffname);
+	}
+
+	public StaffManagedBean getStaffManagedBean() {
+		return staffManagedBean;
+	}
+
+	public void setStaffManagedBean(StaffManagedBean staffManagedBean) {
+		this.staffManagedBean = staffManagedBean;
 	}
 }

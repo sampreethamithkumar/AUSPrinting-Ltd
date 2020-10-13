@@ -1,6 +1,7 @@
 package fit5042.assx.mbean;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -41,6 +42,11 @@ public class StaffManagedBean implements Serializable{
 		super();
 	}
 
+	public int getStaffIdByFname(String staffname) {
+		List<Staff> staff = staffRepository.getStaffIdByFname(staffname);
+		return staff.get(0).getStaffId();
+	}
+	
 	public List<Integer> allStaffId()
 	{
 		return staffRepository.getStaffId();
@@ -70,6 +76,15 @@ public class StaffManagedBean implements Serializable{
 			Logger.getLogger(CustomerManagedBean.class.getName()).log(Level.SEVERE, null, ex);
 		}
 		return null;
+	}
+	
+	public List<String> staffName(){
+		List<Staff> staffs = getStaffs();
+		List<String> staffNames = new ArrayList<>();
+		for (Staff staff: staffs) {
+			staffNames.add(staff.getStaffFname());
+		}
+		return staffNames;
 	}
 	
 	
@@ -151,6 +166,4 @@ public class StaffManagedBean implements Serializable{
 	public void setUserGroupManagedBean(UserGroupManagedBean userGroupManagedBean) {
 		this.userGroupManagedBean = userGroupManagedBean;
 	}
-	
-	
 }
