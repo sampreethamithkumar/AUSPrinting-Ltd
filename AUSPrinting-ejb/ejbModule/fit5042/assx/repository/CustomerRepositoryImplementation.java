@@ -15,6 +15,7 @@ import org.eclipse.persistence.internal.jaxb.json.schema.model.Property;
 
 import fit5042.assx.entities.Customer;
 import fit5042.assx.entities.CustomerContactInformation;
+import fit5042.assx.entities.Staff;
 
 
 @Stateless
@@ -26,11 +27,22 @@ public class CustomerRepositoryImplementation implements  CustomerRepository
 	@Override
 	public void addCustomer(Customer customer) throws Exception {
 		List<Customer> customers = getCustomers();
-		int lastCustomerId = customers.get(customers.size() - 1).getCustomerId();
+		if (customers.size() >= 1)
+		{
+			int lastCustomerId = customers.get(customers.size() - 1).getCustomerId();
+			customer.setCustomerId(lastCustomerId + 1);
+		}
+		else 
+			customer.setCustomerId(1);
+		
 		List<CustomerContactInformation> customerContactInforamtion = entityManager.createNamedQuery(CustomerContactInformation.GET_ALL_CONTACT_INFORMATION).getResultList();
-		int lastContactId = customerContactInforamtion.get(customerContactInforamtion.size() - 1).getCustomerContactId();
-		//int lastCustomerContactId = customers.get(customers.size() - 1).getContactInformation().getCustomerContactId();
-		customer.setCustomerId(lastCustomerId + 1);
+		int lastContactId =1;
+		if (customerContactInforamtion.size() >= 1) {
+			lastContactId = customerContactInforamtion.get(customerContactInforamtion.size() - 1).getCustomerContactId();
+		}
+		else
+			lastContactId = 1;
+
 		CustomerContactInformation newCustomerconatctInformation = customer.getContactInformation();
 		newCustomerconatctInformation.setCustomerContactId(lastContactId);
 		customer.setContactInformation(newCustomerconatctInformation);
@@ -70,8 +82,13 @@ public class CustomerRepositoryImplementation implements  CustomerRepository
 	public void addContactInformation(CustomerContactInformation contactInforamtion) 
 	{
 		List<CustomerContactInformation> customerContactInforamtion = entityManager.createNamedQuery(CustomerContactInformation.GET_ALL_CONTACT_INFORMATION).getResultList();
-		int lastContactId = customerContactInforamtion.get(customerContactInforamtion.size() - 1).getCustomerContactId();
-		contactInforamtion.setCustomerContactId(lastContactId + 1);
+		if (customerContactInforamtion.size() >= 1) {
+			int lastContactId = customerContactInforamtion.get(customerContactInforamtion.size() - 1).getCustomerContactId();
+			contactInforamtion.setCustomerContactId(lastContactId + 1);
+		}
+		else
+			contactInforamtion.setCustomerContactId(1);
+		
 		entityManager.persist(contactInforamtion);
 	}
 
