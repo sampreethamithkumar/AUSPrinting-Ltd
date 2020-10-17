@@ -83,15 +83,25 @@ public class CustomerRepositoryImplementation implements  CustomerRepository
 	
 	@Override
 	public List<Customer> getCustomersName(String customerFirstName) {
-		List<Customer> results = new ArrayList<>();
-		results.add(entityManager.find(Customer.class, 1));
+		List<Customer> customers = new ArrayList<>();
 		
-		CriteriaBuilder builder = entityManager.getCriteriaBuilder();
-    	CriteriaQuery<Customer> criteriaQuery = builder.createQuery(Customer.class);
-    	Root<Customer> c = criteriaQuery.from(Customer.class);
-
-    	criteriaQuery.select(c).where(builder.equal(c.get("customerfirstname"),customerFirstName));
-    	List<Customer> result = entityManager.createQuery(criteriaQuery).getResultList();
-        return results;
+		for (Customer cust : getCustomers()) {
+			if (cust.getCustomerFirstName().equals(customerFirstName))
+				customers.add(cust);
+		}
+		return customers;
 	}
+
+	@Override
+	public List<Customer> searchByPhoneNumber(long phoneNumber) {
+		List<Customer> customers = new ArrayList<>();
+		
+		for (Customer cust: getCustomers()) {
+			if (cust.getContactInformation().getCustomerPhoneNumber() == phoneNumber)
+				customers.add(cust);
+		}
+		return customers;
+	}
+	
+	
 }

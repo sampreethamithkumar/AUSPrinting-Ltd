@@ -93,6 +93,7 @@ public class CustomerApplication {
 		customers.clear();
 		
 		setShowTable(true);
+//		customers.add(customerManagedBean.getCustomerByName(customerFirstName));
 		for (Customer cust: customerManagedBean.getCustomerByName(customerFirstName))
 			customers.add(cust);
 		
@@ -109,5 +110,17 @@ public class CustomerApplication {
 		setCustomers(customers);
 		
 		return customers;
+	}
+	
+	public void customerByPhoneNumber(long phoneNumber) {
+		customers.clear();
+		
+		setShowTable(true);
+		for (Customer cust: customerManagedBean.getCustomerByPhoneNumber(phoneNumber)) {
+			customers.add(cust);
+		}
+		
+		setCustomers(customers);
+			
 	}
 }

@@ -7,21 +7,58 @@
       xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
 	
+	<h:head>
+		<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"></link>
+		<h:outputStylesheet library="css" name="bootstrap.min.css"></h:outputStylesheet>
+		<h:outputStylesheet library="css" name="style.css"></h:outputStylesheet>
+		<h:outputStylesheet library="fonts" name="glyphicons-halflings-regular.eot" />
+		<h:outputStylesheet library="fonts" name="glyphicons-halflings-regular.svg" />
+		<h:outputStylesheet library="fonts" name="glyphicons-halflings-regular.ttf" />
+		<h:outputStylesheet library="fonts" name="glyphicons-halflings-regular.woff" />
+		<h:outputStylesheet library="fonts" name="glyphicons-halflings-regular.woff2" />
+		<title>Customer Management System</title>
+	</h:head>
 	<h:body>
+	<nav class="navbar navbar-inverse">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <h3 style="text-align: center; color: white;">AUSPrinting Ltd.</h3>
+        </div>
+      </div>
+    </nav>
+    
+    <header id="header">
+      <div class="container">
+        <div class="row">
+          <div style="text-align: center;">
+            <h3>Welcome to AUSPrinting Customer Management System</h3>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class="container">
+	<h3>Click Below to login:</h3>
 	
-	Index page
-	<!-- <h:form>
-	
-	
-	<h:commandButton action="faces/admin/index.xhtml" value="Admin Login" />
-	
-	
-	<h:commandButton action="staff/index" value="Staff Login" />
-	</h:form> -->
-	<!-- <button action="faces/admin/index.xhtml">Admin Login</button> -->
-	<!-- <h:commandButton action="/faces/admin/index.xhtml" value="Admin Login" /> -->
-	
-	<h:outputLink value="/AUSPrinting-war/faces/staff/index.xhtml">Access Staff</h:outputLink>
-	<h:outputLink value="/AUSPrinting-war/faces/admin/index.xhtml">Access Administration</h:outputLink>
+	<h3>
+	<h:outputLink value="/AUSPrinting-war/faces/staff/index.xhtml">Login As Staff</h:outputLink></h3>
+	<h3>
+	<h:outputLink value="/AUSPrinting-war/faces/admin/index.xhtml">Login As Admin</h:outputLink>
+	</h3>
+	</div>
+	<div style="height: 350px"></div>
+	<footer id="footer">
+      <p>copyright, &copy; 2020</p>
+    </footer>
+    
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+ 
+    <h:outputScript library="js" name="bootstrap.min.js" />
 	</h:body>
 </html>

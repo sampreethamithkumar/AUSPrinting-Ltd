@@ -189,4 +189,8 @@ public class CustomerManagedBean implements Serializable
 	public void setStaffManagedBean(StaffManagedBean staffManagedBean) {
 		this.staffManagedBean = staffManagedBean;
 	}
+	
+	public List<Customer> getCustomerByPhoneNumber(long phoneNumber){
+		return customerRepository.searchByPhoneNumber(phoneNumber);
+	}
 }

@@ -17,6 +17,8 @@ public class SearchCustomer {
 
 	private String searchByName;
 	
+	private long searchByPhoneNumber;
+	
 	public SearchCustomer(){
 		
 	}
@@ -59,5 +61,17 @@ public class SearchCustomer {
 	
 	public void searchCustomerByName(String firstName) {
 		customerApplication.customerByName(firstName);
+	}
+
+	public long getSearchByPhoneNumber() {
+		return searchByPhoneNumber;
+	}
+
+	public void setSearchByPhoneNumber(long searchByPhoneNumber) {
+		this.searchByPhoneNumber = searchByPhoneNumber;
+	}
+	
+	public void searchCustomerByPhoneNumber(long phoneNumber) {
+		
 	}
 }

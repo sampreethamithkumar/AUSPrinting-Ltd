@@ -148,18 +148,18 @@
 									id="searchName"
 									action="#{customerApplication.customerByName(searchCustomer.searchByName)}"
 									class="btn btn-primary">
-									<f:ajax execute="searchbyName" render="searchTable1" />
+									<f:ajax execute="searchbyName" render="searchTable" />
 								</h:commandButton>
 							</div>
-							<div class="form-group col-md-3" style="width: 30%">
+							<div class="form-group col-md-3" style="width: 30%;margin-left:5%" >
 								<h:outputLabel value="Search By Phone Number"
-									style="margin-left:25%" />
-								<h:inputText value="#{searchCustomer.searchById}"
+									style="margin-left:15%" />
+								<h:inputText value="#{searchCustomer.searchByPhoneNumber}"
 									id="searchbyPhoneNumber" class="form-control" />
 								<br />
-								<h:commandButton style="margin-left:25%" value="Search By Id"
+								<h:commandButton style="margin-left:5%" value="Search By PhoneNumber"
 									id="searchPhoneNumber"
-									action="#{customerApplication.searchCustomerById(searchCustomer.searchById)}"
+									action="#{customerApplication.customerByPhoneNumber(searchCustomer.searchByPhoneNumber)}"
 									class="btn btn-primary">
 									<f:ajax execute="searchbyPhoneNumber" render="searchTable" />
 								</h:commandButton>
@@ -195,6 +195,10 @@
 								<f:facet name="header">Last Name</f:facet>
               			
               			#{tempCustomer.customerLastName}
+              		</h:column>
+              		<h:column>
+              			<f:facet name="header">Phone Number</f:facet>
+              			#{tempCustomer.contactInformation.customerPhoneNumber}
               		</h:column>
 						</h:dataTable>
 					</div>
