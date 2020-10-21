@@ -35,6 +35,7 @@ public class CustomerManagedBean implements Serializable
 	@ManagedProperty(value = "#{staffManagedBean}")
 	StaffManagedBean staffManagedBean;
 	
+	
 	private boolean showRender = false;
 	
 	private String renderText;
@@ -55,7 +56,10 @@ public class CustomerManagedBean implements Serializable
 		return null;
 	}
 	
-
+	public int getStaffByLogin() {
+		return staffManagedBean.getStaffByLogin();
+	}
+	
 	
 	public CustomerRepository getCustomerRepository() {
 		return customerRepository;
@@ -193,4 +197,5 @@ public class CustomerManagedBean implements Serializable
 	public List<Customer> getCustomerByPhoneNumber(long phoneNumber){
 		return customerRepository.searchByPhoneNumber(phoneNumber);
 	}
+
 }

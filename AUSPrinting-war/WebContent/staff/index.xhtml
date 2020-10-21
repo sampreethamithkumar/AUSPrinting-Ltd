@@ -244,9 +244,7 @@
           	</div>
 			<div class="form-group">
               <label>Staff Assigning Id</label>
-              <h:selectOneMenu value="#{customer.staffId}" class="form-control">
-              	<f:selectItems value="#{staffManagedBean.allStaffId()}"/>
-              </h:selectOneMenu>
+              <f:selectItems value="#{staffManagedBean.staffIdByLogin()}"/>
           	</div>
           	<div class="form-group">
               <label>Industry Id</label>

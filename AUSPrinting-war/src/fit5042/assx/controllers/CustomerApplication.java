@@ -104,7 +104,7 @@ public class CustomerApplication {
 		customers.clear();
 		
 		for (Customer cust: customerManagedBean.getCustomers())
-			if (cust.getStaffId().getStaffId() == 1)
+			if (cust.getStaffId().getStaffId() == customerManagedBean.getStaffByLogin())
 				customers.add(cust);
 		
 		setCustomers(customers);
