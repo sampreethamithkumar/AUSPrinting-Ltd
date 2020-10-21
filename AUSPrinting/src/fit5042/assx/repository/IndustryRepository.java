@@ -14,4 +14,6 @@ public interface IndustryRepository
 	public List<Industry> getIndustry();
 	
 	public void addIndustry(Industry industry);
+	
+	public void editIndustry(Industry industry);
 }

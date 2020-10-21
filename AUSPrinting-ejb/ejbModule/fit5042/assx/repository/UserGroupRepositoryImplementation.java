@@ -37,4 +37,11 @@ public class UserGroupRepositoryImplementation implements UserGroupRepository{
 		return allQuery.getResultList();
 	}
 
+	@Override
+	public void removeUser(UserGroup userGroup) {
+		entityManager.remove(userGroup);		
+	}
+	
+	
+
 }

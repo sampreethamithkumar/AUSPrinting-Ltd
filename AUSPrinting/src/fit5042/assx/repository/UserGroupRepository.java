@@ -8,4 +8,6 @@ import fit5042.assx.entities.UserGroup;
 public interface UserGroupRepository {
 
 	void addUser(UserGroup userGroup);
+	
+	void removeUser(UserGroup userGroup);
 }

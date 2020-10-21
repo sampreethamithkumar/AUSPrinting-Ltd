@@ -24,4 +24,8 @@ public class IndustryManagedBean
 	public List<Industry> getAllIndustry(){
 		return industryRepository.getIndustry();
 	}
+	
+	public void editIndustry(Industry industry) {
+		industryRepository.editIndustry(industry);
+	}
 }

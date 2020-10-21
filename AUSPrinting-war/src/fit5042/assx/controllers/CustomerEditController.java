@@ -65,10 +65,7 @@ public class CustomerEditController
 			for(Customer cust: app.getCustomers())
 				if (cust.getCustomerId() == customerId)
 					return cust;
-//			return app.getCustomers().get(--customerId);
 		}
-//		setCustomer(customer.getContactInformation().setCustomerDob(new java.sql.Date(customerDob.getTime())));
-//		//customer.getContactInformation().getCustomerDob();
 		return customer;
 	}
 

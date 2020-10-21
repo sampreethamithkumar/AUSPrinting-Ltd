@@ -43,6 +43,11 @@ public class IndustryRepsitoryImplementation implements IndustryRepository
 		industry.setIndustryId(lastIndustryId + 1);
 		entityManager.persist(industry);		
 	}
+
+	@Override
+	public void editIndustry(Industry industry) {
+		entityManager.merge(industry);
+	}
 	
 	
 

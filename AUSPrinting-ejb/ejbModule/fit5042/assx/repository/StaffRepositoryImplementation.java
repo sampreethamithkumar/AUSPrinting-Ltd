@@ -73,6 +73,8 @@ public class StaffRepositoryImplementation implements StaffRepository {
 					entityManager.remove(custInfo);					
 				}	
 			}
+			removeStaffLoginFromUser(staff.getStaffFname());
+			removeStaffLoginFromUserGroup(staff.getStaffFname());
 			entityManager.remove(staff);
 		}
 			
