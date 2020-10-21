@@ -54,4 +54,17 @@ public class IndustryApplication {
 	public void setIndustryManagedBean(IndustryManagedBean industryManagedBean) {
 		this.industryManagedBean = industryManagedBean;
 	}	
+	
+	public void searchAllIndustry() {
+		industries.clear();
+		
+		for (Industry indust : industryManagedBean.getAllIndustry())
+			industries.add(indust);
+
+		setIndustries(industries);
+	}
+	
+	public void removeIndustry(int industryId) {
+		industryManagedBean.removeIndustry(industryId);
+	}
 }

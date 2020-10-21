@@ -63,8 +63,6 @@ public class StaffRepositoryImplementation implements StaffRepository {
 	@Override
 	public void removeStaff(int staffId) {
 		Staff staff = entityManager.find(Staff.class, staffId);
-		removeStaffLoginFromUser(staff.getStaffFname());
-		removeStaffLoginFromUserGroup(staff.getStaffFname());
 		if(staff != null) {
 			for (Customer cust: getCustomers()) {
 				if (cust.getStaffId().equals(staff)) {

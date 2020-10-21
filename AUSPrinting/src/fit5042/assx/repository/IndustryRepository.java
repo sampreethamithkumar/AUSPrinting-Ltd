@@ -16,4 +16,6 @@ public interface IndustryRepository
 	public void addIndustry(Industry industry);
 	
 	public void editIndustry(Industry industry);
+	
+	public void removeIndustry(int industryId);
 }
