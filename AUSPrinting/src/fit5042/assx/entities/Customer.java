@@ -6,6 +6,7 @@ import java.sql.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -75,7 +76,7 @@ public class Customer implements Serializable
 		this.customerId = customerId;
 	}
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	public Staff getStaffId() 
 	{
 		return staffId;
@@ -138,8 +139,6 @@ public class Customer implements Serializable
 	{
 		this.printer_id = printer_id;
 	}
-	
-
 
 	@Override
 	public String toString() 

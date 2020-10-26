@@ -93,6 +93,7 @@ public class CustomerApplication {
 		customers.clear();
 		
 		setShowTable(true);
+//		customers.add(customerManagedBean.getCustomerByName(customerFirstName));
 		for (Customer cust: customerManagedBean.getCustomerByName(customerFirstName))
 			customers.add(cust);
 		
@@ -103,11 +104,23 @@ public class CustomerApplication {
 		customers.clear();
 		
 		for (Customer cust: customerManagedBean.getCustomers())
-			if (cust.getStaffId().getStaffId() == 1)
+			if (cust.getStaffId().getStaffId() == customerManagedBean.getStaffByLogin())
 				customers.add(cust);
 		
 		setCustomers(customers);
 		
 		return customers;
+	}
+	
+	public void customerByPhoneNumber(long phoneNumber) {
+		customers.clear();
+		
+		setShowTable(true);
+		for (Customer cust: customerManagedBean.getCustomerByPhoneNumber(phoneNumber)) {
+			customers.add(cust);
+		}
+		
+		setCustomers(customers);
+			
 	}
 }

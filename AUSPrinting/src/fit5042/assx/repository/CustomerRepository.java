@@ -24,4 +24,6 @@ public interface CustomerRepository
 	public void editCustomer(Customer customer);
 
 	List<Customer> getCustomersName(String customerFirstName);
+	
+	List<Customer> searchByPhoneNumber(long phoneNumber);
 }

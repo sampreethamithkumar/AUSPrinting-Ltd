@@ -32,7 +32,6 @@ import fit5042.assx.repository.UserService;
 public class LoginController implements Serializable{
 
 	private Users user;
-	private Subject subject;
 	private Principal principal;
 	
 

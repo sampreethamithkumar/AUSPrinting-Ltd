@@ -3,8 +3,10 @@ package fit5042.assx.entities;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
@@ -119,7 +121,7 @@ public class Staff implements Serializable
 		this.staffPhoneNumber = staffPhoneNumber;
 	}
 	
-	@OneToMany(mappedBy = "staff")
+	@OneToMany(mappedBy = "staff",cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
 	public List<Customer> getCustomer() 
 	{
 		return customer;

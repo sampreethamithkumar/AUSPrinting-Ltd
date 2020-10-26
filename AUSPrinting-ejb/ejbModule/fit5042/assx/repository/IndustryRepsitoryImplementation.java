@@ -10,6 +10,8 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
+import fit5042.assx.entities.Customer;
+import fit5042.assx.entities.CustomerContactInformation;
 import fit5042.assx.entities.Industry;
 
 @Stateless
@@ -43,7 +45,36 @@ public class IndustryRepsitoryImplementation implements IndustryRepository
 		industry.setIndustryId(lastIndustryId + 1);
 		entityManager.persist(industry);		
 	}
-	
-	
 
+	@Override
+	public void editIndustry(Industry industry) {
+		entityManager.merge(industry);
+	}
+
+	@Override
+	public void removeIndustry(int industryId) {
+		Industry industry = entityManager.find(Industry.class, industryId);
+		if (industry != null) {
+			for (Customer cust: getCustomers()) {
+				if (cust.getIndustryId().equals(industry)) {
+					CustomerContactInformation custInfo = cust.getContactInformation();
+					entityManager.remove(cust);
+					entityManager.remove(custInfo);					
+				}	
+			}
+			entityManager.remove(industry);		
+		}
+	}
+		
+	
+	private List<Customer> getCustomers() 
+	{
+		CriteriaBuilder criteriaBuilder= entityManager.getCriteriaBuilder();
+		CriteriaQuery<Customer> criteraiQuery = criteriaBuilder.createQuery(Customer.class);
+		Root<Customer> rootEntry = criteraiQuery.from(Customer.class);
+		CriteriaQuery<Customer> all = criteraiQuery.select(rootEntry);
+		
+		TypedQuery<Customer> allQuery = entityManager.createQuery(all);
+		return allQuery.getResultList();
+	}
 }

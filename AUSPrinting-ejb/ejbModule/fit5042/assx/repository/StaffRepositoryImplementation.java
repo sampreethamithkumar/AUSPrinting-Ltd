@@ -33,8 +33,12 @@ public class StaffRepositoryImplementation implements StaffRepository {
 	@Override
 	public void addStaff(Staff staff) {
 		List<Staff> staffs = getStaff();
-		int lastStaffId = staffs.get(staffs.size() - 1).getStaffId();
-		staff.setStaffId(lastStaffId + 1);
+		if (staffs.size() >= 1) {
+			int lastStaffId = staffs.get(staffs.size() - 1).getStaffId();
+			staff.setStaffId(lastStaffId + 1);
+		}
+		else
+			staff.setStaffId(1);
 		entityManager.persist(staff);
 		
 
@@ -59,10 +63,19 @@ public class StaffRepositoryImplementation implements StaffRepository {
 	@Override
 	public void removeStaff(int staffId) {
 		Staff staff = entityManager.find(Staff.class, staffId);
-		removeStaffLoginFromUser(staff.getStaffFname());
-		removeStaffLoginFromUserGroup(staff.getStaffFname());
-		if(staff != null)
+		if(staff != null) {
+			for (Customer cust: getCustomers()) {
+				if (cust.getStaffId().equals(staff)) {
+					CustomerContactInformation custInfo = cust.getContactInformation();
+					entityManager.remove(cust);
+					entityManager.remove(custInfo);					
+				}	
+			}
+			removeStaffLoginFromUser(staff.getStaffFname());
+			removeStaffLoginFromUserGroup(staff.getStaffFname());
 			entityManager.remove(staff);
+		}
+			
 	}
 	
 	@Override
@@ -82,5 +95,33 @@ public class StaffRepositoryImplementation implements StaffRepository {
 		query.setParameter("staffName", staffName);
 		query.executeUpdate();
 	}
+
+	@Override
+	public List<Staff> getStaffIdByFname(String staffName) {
+		String queryString = "SELECT s.staffId FROM Staff s WHERE s.staffFname = :staffName";
+		TypedQuery<Staff> query = entityManager.createQuery(queryString,Staff.class);
+		query.setParameter("staffName", staffName);
+		return query.getResultList();
+	}
+
+	@Override
+	public List<Staff> getStaffName(String staffName) {
+		String queryString = "SELECT s.staffFname FROM Staff s";
+		TypedQuery<Staff> query = entityManager.createQuery(queryString,Staff.class);
+		return query.getResultList();
+		
+	}
+	
+	private List<Customer> getCustomers() 
+	{
+		CriteriaBuilder criteriaBuilder= entityManager.getCriteriaBuilder();
+		CriteriaQuery<Customer> criteraiQuery = criteriaBuilder.createQuery(Customer.class);
+		Root<Customer> rootEntry = criteraiQuery.from(Customer.class);
+		CriteriaQuery<Customer> all = criteraiQuery.select(rootEntry);
+		
+		TypedQuery<Customer> allQuery = entityManager.createQuery(all);
+		return allQuery.getResultList();
+	}
+	
 	
 }

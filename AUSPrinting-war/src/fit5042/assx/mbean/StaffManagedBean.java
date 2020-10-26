@@ -1,6 +1,7 @@
 package fit5042.assx.mbean;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -9,6 +10,8 @@ import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+
+import com.sun.tools.xjc.reader.xmlschema.bindinfo.BIConversion.User;
 
 import fit5042.assx.controllers.StaffController;
 import fit5042.assx.entities.Address;
@@ -33,6 +36,9 @@ public class StaffManagedBean implements Serializable{
 	@ManagedProperty(value = "#{userGroupManagedBean}")
 	UserGroupManagedBean userGroupManagedBean;
 	
+	@ManagedProperty(value = "#{loginController}")
+	LoginController loginController;
+	
 	private boolean showRender =false;
 	
 	private String renderText;
@@ -41,6 +47,11 @@ public class StaffManagedBean implements Serializable{
 		super();
 	}
 
+	public int getStaffIdByFname(String staffname) {
+		List<Staff> staff = staffRepository.getStaffIdByFname(staffname);
+		return staff.get(0).getStaffId();
+	}
+	
 	public List<Integer> allStaffId()
 	{
 		return staffRepository.getStaffId();
@@ -70,6 +81,30 @@ public class StaffManagedBean implements Serializable{
 			Logger.getLogger(CustomerManagedBean.class.getName()).log(Level.SEVERE, null, ex);
 		}
 		return null;
+	}
+	
+	public List<String> staffName(){
+		List<Staff> staffs = getStaffs();
+		List<String> staffNames = new ArrayList<>();
+		for (Staff staff: staffs) {
+			staffNames.add(staff.getStaffFname());
+		}
+		return staffNames;
+	}
+	
+	public int getStaffByLogin() {
+		String loginStaffName = loginController.getUser().getUsername();
+		for (Staff staff: getStaffs()) {
+			if (staff.getStaffFname().equals(loginStaffName))
+				return staff.getStaffId();
+		}
+		return 1;
+	}
+	
+	public List<Integer> staffIdByLogin(){
+		List<Integer> staffId = new ArrayList<>();
+		staffId.add(getStaffByLogin());
+		return staffId;
 	}
 	
 	
@@ -151,6 +186,12 @@ public class StaffManagedBean implements Serializable{
 	public void setUserGroupManagedBean(UserGroupManagedBean userGroupManagedBean) {
 		this.userGroupManagedBean = userGroupManagedBean;
 	}
-	
-	
+
+	public LoginController getLoginController() {
+		return loginController;
+	}
+
+	public void setLoginController(LoginController loginController) {
+		this.loginController = loginController;
+	}
 }

@@ -21,4 +21,8 @@ public interface StaffRepository {
 
 	public Staff searchStaffById(int staffId);
 	
+	public List<Staff> getStaffIdByFname(String staffName);
+	
+	public List<Staff> getStaffName(String staffName);
+	
 }

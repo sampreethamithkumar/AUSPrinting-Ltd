@@ -68,4 +68,9 @@ public class UserRepositoryImplementation implements UserRepository{
 			entityManager.merge(user);
 		}
 	}
+
+	@Override
+	public void deleteUser(Users user) {
+		entityManager.remove(user);
+	}
 }

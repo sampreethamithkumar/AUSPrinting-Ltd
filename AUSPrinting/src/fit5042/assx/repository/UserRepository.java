@@ -10,4 +10,6 @@ public interface UserRepository {
 	void addUser(Users user);
 	
 	void editUser(Users user);
+	
+	void deleteUser(Users user);
 }
