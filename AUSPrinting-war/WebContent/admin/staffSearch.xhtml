@@ -118,6 +118,17 @@
               					<f:ajax execute="searchbyId" render="searchTable" />
               				</h:commandButton>
               			</div>
+              			<div class="form-group col-md-9" style="width:70%">
+              				<h:outputLabel value="Search By First Name" style="margin-left:25%" />
+              				<h:inputText value= "#{searchStaff.staffFName}" id="searchbyFirstName" class="form-control" />
+              				<h:outputLabel value="Search By Last Name" style="margin-left:25%" />
+              				<h:inputText value= "#{searchStaff.staffLName}" id="searchbyLastName" class="form-control" />
+              				<br />
+              				<h:commandButton value="Search By First and last Name" id="searchByName" 
+              				action="#{staffApplication.searchStaffByFirstAndLastName(searchStaff.staffFName,searchStaff.staffLName)}" class="btn btn-primary">
+              					<f:ajax execute="searchbyFirstName searchbyLastName" render="searchTable" />
+              				</h:commandButton>
+              			</div>
               		</h:form>
               	</div>
               </div>
@@ -195,7 +206,7 @@
 							<h:inputSecret value="#{staffController.staffPassword}"
 								class="form-control" pt:placeholder="Password" id="password"
 								title="password" required="true"
-								requiredMesage="Please enter the password" />
+								validator="#{staffController.validatePassword}" />
 
 							<h:message for="password" class="label label-danger" />
 						</div>

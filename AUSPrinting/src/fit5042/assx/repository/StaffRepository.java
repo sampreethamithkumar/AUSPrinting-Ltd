@@ -25,4 +25,6 @@ public interface StaffRepository {
 	
 	public List<Staff> getStaffName(String staffName);
 	
+	public List<Staff> searchStaffByFirstAndLastName(String firstName,String lastName);
+	
 }

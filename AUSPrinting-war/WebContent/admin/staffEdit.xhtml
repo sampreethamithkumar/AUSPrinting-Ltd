@@ -179,7 +179,7 @@
 							<h:inputSecret value="#{staffController.staffPassword}"
 								class="form-control" pt:placeholder="Password" id="password"
 								title="password" required="true"
-								requiredMesage="Please enter the password" />
+								validator="#{staffController.validatePassword}" />
 
 							<h:message for="password" class="label label-danger" />
 						</div>

@@ -231,7 +231,7 @@
           	<div class="form-group">
               <label>TFN</label>
               <h:inputText value="#{customer.customerTFN}" class="form-control" pt:placeholder="TFN" id="tfn"
-              required="true" requiredMessage="Please enter TFN" />
+              required="true" validator="#{customer.validateTFN}" />
               <h:message for="tfn" class="label label-danger"/>
           	</div>
 			<div class="form-group">

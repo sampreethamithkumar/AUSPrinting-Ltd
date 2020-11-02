@@ -93,7 +93,6 @@ public class CustomerApplication {
 		customers.clear();
 		
 		setShowTable(true);
-//		customers.add(customerManagedBean.getCustomerByName(customerFirstName));
 		for (Customer cust: customerManagedBean.getCustomerByName(customerFirstName))
 			customers.add(cust);
 		

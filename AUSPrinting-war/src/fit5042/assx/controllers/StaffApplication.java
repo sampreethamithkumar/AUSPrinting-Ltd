@@ -58,6 +58,20 @@ public class StaffApplication
 		staffs.add(staffManagedBean.searchStaffByID(staffId));
 	}
 	
+	public void searchStaffByFirstAndLastName(String firstName,String lastName) {
+		staffs.clear();
+		
+		setShowTable(true);
+		
+		for (Staff staff: staffManagedBean.getStaffs()) {
+			if (staff.getStaffFname().equals(firstName) && staff.getStaffLname().equals(lastName))
+				staffs.add(staff);
+		}
+			
+		
+		setStaffs(staffs);
+	}
+	
 	public void updateStaffList() {
 		if (staffs != null && staffs.size() > 0) {
 

@@ -9,6 +9,9 @@ public class SearchStaff
 {
 	StaffApplication staffApplication;
 	
+	private String StaffFName;
+	private String StaffLName;
+	
 	private int searchById;
 	
 	public SearchStaff() {
@@ -38,7 +41,24 @@ public class SearchStaff
 	public void setSearchById(int searchById) {
 		this.searchById = searchById;
 	}
-	
-	
 
+
+	public String getStaffFName() {
+		return StaffFName;
+	}
+
+
+	public void setStaffFName(String staffFName) {
+		StaffFName = staffFName;
+	}
+
+
+	public String getStaffLName() {
+		return StaffLName;
+	}
+
+
+	public void setStaffLName(String staffLName) {
+		StaffLName = staffLName;
+	}
 }

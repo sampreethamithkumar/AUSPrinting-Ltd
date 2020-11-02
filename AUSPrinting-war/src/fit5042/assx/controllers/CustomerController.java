@@ -5,7 +5,11 @@ import java.sql.Date;
 import java.util.Set;
 
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
+import javax.faces.validator.ValidatorException;
 
 import fit5042.assx.entities.Address;
 import fit5042.assx.entities.CustomerContactInformation;
@@ -339,6 +343,19 @@ public class CustomerController implements Serializable {
 
 	public void setCustomerTFN(String customerTFN) {
 		this.customerTFN = customerTFN;
+	}
+	
+	public void validateTFN(FacesContext context, UIComponent component,Object value) throws ValidatorException{
+		if (value == null) 
+			return;
+		
+		String data = value.toString();
+		
+		if (!data.matches("[0-9]*[A-Z]*")) {
+			FacesMessage message =  new FacesMessage("TFN should have start with number and can contain uppercase letters.");
+			
+			throw new ValidatorException(message);
+		}
 	}
 
 	@Override

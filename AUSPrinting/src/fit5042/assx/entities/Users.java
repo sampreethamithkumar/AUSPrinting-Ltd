@@ -13,14 +13,14 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "Users")
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public class Users implements Serializable{
-	
+public class Users implements Serializable {
+
 	private long id;
 	private String username;
 	private String userPassword;
-	
+
 	public Users() {
-		
+
 	}
 
 	public Users(long id, String username, String userPassword) {
@@ -31,8 +31,8 @@ public class Users implements Serializable{
 	}
 
 	@Id
-    @GeneratedValue
-    @Column(name = "id")
+	@GeneratedValue
+	@Column(name = "id")
 	public long getId() {
 		return id;
 	}
@@ -41,7 +41,7 @@ public class Users implements Serializable{
 		this.id = id;
 	}
 
-	@Column(name="username")
+	@Column(name = "username")
 	public String getUsername() {
 		return username;
 	}
@@ -49,8 +49,8 @@ public class Users implements Serializable{
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	
-	@Column(name="password")
+
+	@Column(name = "password")
 	public String getUserPassword() {
 		return userPassword;
 	}

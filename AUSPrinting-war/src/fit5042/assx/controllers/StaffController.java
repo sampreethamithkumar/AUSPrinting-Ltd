@@ -2,8 +2,12 @@ package fit5042.assx.controllers;
 
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
+import javax.faces.validator.ValidatorException;
 
 import fit5042.assx.entities.Address;
 import fit5042.assx.entities.Customer;
@@ -160,6 +164,32 @@ public class StaffController {
 
 	public void setState(String state) {
 		this.state = state;
+	}
+	
+	public void validatePassword(FacesContext context, UIComponent component,Object value) throws ValidatorException{
+		if (value == null) 
+			return;
+		
+		String data = value.toString();
+		
+		if (!data.matches("[A-Z]+[a-zA-Z0-9]*[0-9]+$")) {
+			FacesMessage message =  new FacesMessage("Password should start with uppercase and end with number.");
+			
+			throw new ValidatorException(message);
+		}
+	}
+	
+	public void validateTFN(FacesContext context, UIComponent component,Object value) throws ValidatorException{
+		if (value == null) 
+			return;
+		
+		String data = value.toString();
+		
+		if (!data.matches("[0-9]*[A-Z]*")) {
+			FacesMessage message =  new FacesMessage("TFN should have only uppercase and numbers");
+			
+			throw new ValidatorException(message);
+		}
 	}
 
 	@Override

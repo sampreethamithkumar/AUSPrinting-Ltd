@@ -171,6 +171,10 @@ public class StaffManagedBean implements Serializable{
 		return staffRepository.searchStaffById(staffId);
 	}
 	
+	public List<Staff> searchStaffByFirstAndLastName(String firstName,String lastName) {
+		return staffRepository.searchStaffByFirstAndLastName(firstName, lastName);
+	}
+	
 	public UserManagedBean getUserManagedBean() {
 		return userManagedBean;
 	}

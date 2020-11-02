@@ -4,6 +4,7 @@ import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -122,6 +123,24 @@ public class StaffRepositoryImplementation implements StaffRepository {
 		TypedQuery<Customer> allQuery = entityManager.createQuery(all);
 		return allQuery.getResultList();
 	}
-	
-	
+
+	@Override
+	public List<Staff> searchStaffByFirstAndLastName(String firstName, String lastName) {
+//		String queryString = "SELECT s.staffId FROM Staff s WHERE s.staffFname =:firstName and s.staffLname =:lastName";
+//		TypedQuery<Staff> query = entityManager.createQuery(queryString,Staff.class);
+//		query.setParameter("firstName",firstName);
+//		query.setParameter("lastName",lastName);
+//		return query.getResultList();
+		
+		List<Staff> staffs = new ArrayList<>();
+		
+		for (Staff staff: getStaff()) {
+			if (staff.getStaffFname().equals("firstName") && staff.getStaffLname().equals("lastName")) {
+				staffs.add(staff);
+			}
+		}
+		
+		return staffs;
+			
+	}
 }
