@@ -1,0 +1,319 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+<h:head>
+		<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"></link>
+		<h:outputStylesheet library="css" name="bootstrap.min.css"></h:outputStylesheet>
+		<h:outputStylesheet library="css" name="style.css"></h:outputStylesheet>
+		<h:outputStylesheet library="fonts" name="glyphicons-halflings-regular.eot" />
+		<h:outputStylesheet library="fonts" name="glyphicons-halflings-regular.svg" />
+		<h:outputStylesheet library="fonts" name="glyphicons-halflings-regular.ttf" />
+		<h:outputStylesheet library="fonts" name="glyphicons-halflings-regular.woff" />
+		<h:outputStylesheet library="fonts" name="glyphicons-halflings-regular.woff2" />
+		<title>Staff | Customer</title>
+	</h:head>
+	<h:body>
+		<nav class="navbar navbar-inverse">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <h:link class="navbar-brand textColor" value="Staff" outcome="index" />
+          <!--  <a class="navbar-brand textColor" href="#">Admin</a>-->
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li role="presentation"><h:link value = "Dashboard" outcome = "index" /></li>
+            <li role="presentation" class="active" ><h:link value="Customer" outcome="customer"/></li>
+            <li role="presentation"><h:link value="Change Password" outcome="changePassword" /></li>
+          </ul>
+         <h:form>
+          <ul class="nav navbar-nav navbar-right">
+            <li class="active"><h:link value="Welcome,#{loginController.user.username}" outcome="index" /></li>
+            <li><h:commandButton style="margin:10px" class="btn btn-secondary" value = "logout" action="#{loginController.logout()}"/></li>
+          </ul>
+          </h:form>
+        </div>
+      </div>
+    </nav>
+    
+    <h:form>
+     <header id="header">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-10">
+            <h1><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>Customer<small> Staff login</small></h1>
+          </div>
+          <div class="col-md-2">
+            <div class="dropdown create">
+              <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="modal" data-target="#addPage" aria-haspopup="true" aria-expanded="true">
+                Add Customer
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    </h:form>
+    
+    <section id="breadcrumb">
+      <div class = "container">
+        <ol class="breadcrumb">
+			<li><h:link value="Dashboard" outcome="index"/> > </li>        
+          	<li><h:link value ="Customer" outcome ="customer"/> > </li>
+          	<li class="active"><h:link value="View Details" outcome="customer" /></li>
+        </ol>
+      </div>
+    </section>
+    
+    <section id="main">
+      <div class="container">
+        <div class="row">
+          <div class = "col-md-3">
+            <div class="list-group">
+              <h:link outcome="customer" class="list-group-item active">
+                <span class="glyphicon glyphicon-eye-open " aria-hidden="true"></span> View All
+              </h:link>
+              <h:link outcome="customerSearch" class="list-group-item"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search</h:link>
+              <h:link outcome="edit" class="list-group-item"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Edit</h:link>
+              <h:link outcome="delete" class="list-group-item"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete</h:link>
+            </div>
+            <div class="well">
+              <h4>Disk Space Used</h4>
+              <div class="progress">
+                <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+                  60%
+                </div>
+              </div>
+              <h4>Bandwidth Used</h4>
+              <div class="progress">
+                <div class="progress-bar" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%;">
+                  40%
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-9">
+            <div class="panel panel-default">
+              	<div class="panel-heading maincolor">
+                	<h3 class="panel-title">Customer Details</h3>
+              	</div>
+              <div class="panel-body row">
+              	<label class="col-md-2">Customer Id: </label>
+              	<h:outputLabel id="id" >#{customerDetails.customer.customerId}</h:outputLabel>
+              	<br/>
+              	<h:form>
+              		<div class="form-group">
+              			<label class="col-md-2">First Name: </label>
+              			<h:outputLabel id ="formFirstName">#{customerDetails.customer.customerFirstName}</h:outputLabel>
+              			<!-- <h:outputText value="#{customerDetails.customer.customerFirstName}" class="form-control" id="formFirstName"/>
+              			 --><!-- <h:inputText value="#{customerDetails.customer.customerFirstName}" binding="#{customerFirstName}" class="form-control" id="formFirstName"/> -->
+          			</div>
+          			<div class="form-group">
+              			<label class="col-md-2">Last Name: </label>
+              			<h:outputLabel id="formLatName">#{customerDetails.customer.customerLastName}</h:outputLabel>
+          			</div>
+          			<div class="form-group">
+              			<label class="col-md-2">Street Number: </label>
+              			<h:outputLabel id="formStreetNumber">#{customerDetails.customer.contactInformation.customerAddress.streetNumber}</h:outputLabel>
+          			</div>
+					<div class="form-group">
+              			<label class="col-md-2">Street Address: </label>
+              			<h:outputLabel id="formStreetAddress">#{customerDetails.customer.contactInformation.customerAddress.streetAddress}</h:outputLabel>
+          			</div>
+          			<div class="form-group">
+              			<label class="col-md-2">Suburb: </label>
+              			<h:outputLabel id="formSuburb">#{customerDetails.customer.contactInformation.customerAddress.suburb}</h:outputLabel>
+          			</div>
+          			<div class="form-group">
+              			<label class="col-md-2">Postcode: </label>
+              			<h:outputLabel id="formPostCode">#{customerDetails.customer.contactInformation.customerAddress.postcode}</h:outputLabel>
+          			</div>
+          			<div class="form-group">
+              			<label class="col-md-2">State</label>
+              			<h:outputLabel id="formState">#{customerDetails.customer.contactInformation.customerAddress.state}</h:outputLabel>
+          			</div>             			
+          			<div class="form-group">
+              			<label class="col-md-2">Phone number: </label>
+              			<h:outputLabel id="formPhoneNumber">#{customerDetails.customer.contactInformation.customerPhoneNumber}</h:outputLabel>
+          			</div>
+          			<div class="form-group">
+              			<label class="col-md-2">Email Id: </label>
+              			<h:outputLabel id="formEmailId">#{customerDetails.customer.contactInformation.customerEmail}</h:outputLabel>
+          			</div>
+          			<div class="form-group">
+              			<label class="col-md-2">Date of Birth: </label>
+              			<h:outputLabel id="formDob">#{customerDetails.customer.contactInformation.customerDob}</h:outputLabel>
+          			</div>
+          			<div class="form-group">
+              			<label class="col-md-2">TFN: </label>
+              			<h:outputLabel id="formTFN">#{customerDetails.customer.contactInformation.customerTFN}</h:outputLabel>
+          			</div>
+          			
+                <h:link id="close" value="Close" outcome="customer.xhtml"
+						          class="btn btn-default" />  
+              	</h:form>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+    </section>
+    
+    
+    <footer id="footer">
+      <p>copyright, &copy; 2020</p>
+    </footer>
+    
+    <div class="modal fade" id="addPage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <h:form>
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Add Customer</h4>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <label>First Name</label>
+              <h:inputText value="#{customer.customerFirstName}" class="form-control" pt:placeholder="First Name" id="firstName"
+              title="First Name" requiredMessage="Please enter the first name" required="true"/>
+            
+              <h:message for="firstName" class="label label-danger"/>
+          	</div>
+          	<div class="form-group">
+              <label>Last Name</label>
+              <h:inputText value="#{customer.customerLastName}" class="form-control" pt:placeholder="Last Name" id="lastName"
+              title="Last Name" required="true" requiredMesage="Please enter the last name" />
+              
+              <h:message for="lastName" class="label label-danger"/>
+          	</div>
+          	<div class="form-group">
+              <label>Street Number</label>
+              <h:inputText value="#{customer.streetNumber}" class="form-control" pt:placeholder="Street Number" id="streetNumber"
+              required="true" requiredMessage="Please enter the stree number" validatorMessage="Please enter a street number between 1 and 1000"
+              converterMessage="Please enter a number" >
+              <f:convertNumber intergerOnly="true" />
+              <f:validateLongRange minimum="1" maximum="1000" />
+              </h:inputText>
+              
+              <h:message for="streeNumber" class="label label-danger"/>
+          	</div>
+          	<div class="form-group">
+              <label>Street Address</label>
+              <h:inputText value="#{customer.streetAddress}" class="form-control" pt:placeholder="Street Address" id="streetAddress"
+              required="true" requiredMessage="Please enter the Street Address"/>
+              <h:message for="streetAddress" class="label label-danger" />
+          	</div>
+          	<div class="form-group">
+              <label>Suburb</label>
+              <h:inputText value="#{customer.suburb}" class="form-control" pt:placeholder="Suburb" id="suburb" 
+              required="true" requiredMessage="Please enter the Suburb"/>
+              
+              <h:message for="suburb" class="label label-danger"/>
+          	</div>
+          	<div class="form-group">
+              <label>Postcode</label>
+              <h:inputText value="#{customer.postcode}" class="form-control" pt:placeholder="Postcode" id="postcode"
+              required="true" requiredMessage="Please enter the postcode" validatorMessage="Please enter a post code between 1 and 100000" converterMessage="Please enter a number">
+              <f:convertNumber intergerOnly="true"/>
+              <f:validateLongRange minimum="1" maximum="100000" />
+              </h:inputText>
+              <h:message for="postcode" class="label label-danger"/>
+          	</div>
+          	<div class="form-group">
+              <label>State</label>
+              <h:inputText value="#{customer.state}" class="form-control" pt:placeholder="State" id="state"
+              required="true" requiredMessage="Please enter the state"/>
+              <h:message for="state" class="label label-danger"/>
+          	</div>
+          	<div class="form-group">
+              <label>Phone Number</label>
+              <h:inputText value="#{customer.customerPhoneNumber}" class="form-control" pt:placeholder="Phone Number" id="phoneNumber"
+              required="true" requiredMessage="Please enter the phone number" converterMessage="Please enter a number">
+              	<f:convertNumber intergerOnly="true"/>
+              </h:inputText>
+              <h:message for="phoneNumber" class="label label-danger"/>
+          	</div>
+     		<div class="form-group">
+              <label>Email Id</label>
+              <h:inputText value="#{customer.customerEmail}" class="form-control" pt:placeholder="Email" id="email"
+              required="true" requiredMessage="Please enter the email Id">
+              </h:inputText>
+              <h:message for="email" class="label label-danger"/>
+          	</div>
+          	<div class="form-group">
+              <label>Date Of Birth</label>
+              <h:inputText value="#{customer.customerDob}" class="form-control" pt:placeholder="Date Of Birth" id="dob"
+              required="true" requiredMessage="Please enter the Date of Birth">
+             <f:convertDateTime pattern = "dd-MM-yyyy" />
+              </h:inputText>
+              <h:message for="dob" class="label label-danger"/>
+          	</div>
+          	<div class="form-group">
+              <label>TFN</label>
+              <h:inputText value="#{customer.customerTFN}" class="form-control" pt:placeholder="TFN" id="tfn"
+              required="true" validator="#{customer.validateTFN}" />
+              <h:message for="tfn" class="label label-danger"/>
+          	</div>
+			<div class="form-group">
+              <label>Staff Assigning Id</label>
+              <h:selectOneMenu value="#{customer.staffId}" class="form-control">
+              	<f:selectItems value="#{staffManagedBean.staffIdByLogin()}"/>
+              </h:selectOneMenu>
+          	</div>
+          	<div class="form-group">
+              <label>Industry Id</label>
+              <h:selectOneMenu value="#{customer.industryId}" class="form-control">
+              	<f:selectItems value="#{industryManagedBean.allIndustryId()}"/>
+              </h:selectOneMenu>
+              <!-- <h:inputText value="#{customer.industryId}" class="form-control" placeholder="Industry Id" id="industryId"/> -->
+          	</div>
+          	<div class="form-group">
+              <label>Printer Id</label>
+              <h:selectOneMenu value="#{customer.printerId}" class="form-control">
+              	<f:selectItems value="#{printerManagedBean.allPrinterId()}"/>
+              </h:selectOneMenu>
+          	</div>
+          	<div class="form-group">
+              <label>Date Of Purchase</label>
+              <h:inputText value="#{customer.dateOfPurchase}" class="form-control" pt:placeholder="Date Of Purchase" id="dop"
+              required="true" requiredMessage="Please enter Date of Purchase"> 
+              <f:convertDateTime pattern = "dd-MM-yyyy" />
+              </h:inputText>
+              <h:message for="dop" class="label label-danger"/>
+          	</div>
+			  <h:outputLabel value="#{customerManagedBean.renderText}"  id="submitted"/>    
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <h:commandButton class="btn btn-primary" action="#{customerManagedBean.addCustomer(customer)}" value="Add"  >
+            	<f:ajax execute="@form" render="@form submitted" />
+            </h:commandButton>
+            
+          </div>
+        </h:form>
+        </div>
+      </div>
+    </div>
+    
+    
+	    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
+   
+   <!--  
+    <script src="js/bootstrap.min.js"></script> -->
+    <h:outputScript library="js" name="bootstrap.min.js" />
+	</h:body>
+</html>
